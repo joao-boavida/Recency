@@ -24,32 +24,46 @@ class FlightLog: ObservableObject {
 }
 
 struct ContentView: View {
+
+    @State private var isAddActivityVisible = false
+
+    @ObservedObject var flightLog = FlightLog()
+
     var body: some View {
         NavigationView {
             VStack {
-                Section {
-                    Text("Current Status Here")
-                        .font(.largeTitle)
-                    Text("Next Limitation")
-                        .font(.headline)
-                }
                 Form {
+                    Section {
+                        Text("Current Status Here")
+                            .font(.largeTitle)
+                        Text("Next Limitation")
+                            .font(.headline)
+                    }
                     Section {
                         Text("Takeoffs and date")
                         Text("Landings and date")
                     }
-                    Button("See activities...") {
+                    /*Button("See activities...") {
                         // present sheet to see activities
-                    }
+                    }*/
                     Button("Add Activity...") {
-                    //Present sheet to add activity
+                        isAddActivityVisible = true
                     }
-
                 }
+
+                List { // temporary
+                    ForEach(flightLog.data) { activity in
+                        Text("\(activity.takeoffDate)")
+                        Text("\(activity.takeoffs)")
+                    }
+                }
+
             }
             .navigationBarTitle("Recency Monitor")
         }
-
+        .sheet(isPresented: $isAddActivityVisible) {
+            AddActivity(flightLog: flightLog)
+        }
     }
 }
 
