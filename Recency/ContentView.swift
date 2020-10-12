@@ -54,7 +54,7 @@ struct ContentView: View {
                         Text("3 Takeoffs exp date")
                         Text("3 Landings exp date")
                     }
-                    Button("See Activities...") {
+                    Button("See Activities... Debug: \(flightLog.data.count)") {
                         activeSheet = .seeActivities
                         //isSeeActivitiesVisible = true
                     }
