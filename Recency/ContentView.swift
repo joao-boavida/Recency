@@ -16,6 +16,14 @@ struct FlightActivity: Identifiable, Codable {
     let landingDates: Date
 }
 
+enum ActiveSheet: Identifiable {
+
+    case seeActivities, addActivity
+    var id: String {
+        UUID().uuidString
+    }
+}
+
 class FlightLog: ObservableObject {
 
     let storageKey = "FlightActivity"
@@ -26,6 +34,9 @@ class FlightLog: ObservableObject {
 struct ContentView: View {
 
     @State private var isAddActivityVisible = false
+    @State private var isSeeActivitiesVisible = false
+
+    @State private var activeSheet: ActiveSheet?
 
     @ObservedObject var flightLog = FlightLog()
 
@@ -40,30 +51,36 @@ struct ContentView: View {
                             .font(.headline)
                     }
                     Section {
-                        Text("Takeoffs and date")
-                        Text("Landings and date")
+                        Text("3 Takeoffs exp date")
+                        Text("3 Landings exp date")
                     }
-                    /*Button("See activities...") {
-                        // present sheet to see activities
-                    }*/
+                    Button("See Activities...") {
+                        activeSheet = .seeActivities
+                        //isSeeActivitiesVisible = true
+                    }
                     Button("Add Activity...") {
-                        isAddActivityVisible = true
-                    }
-                }
-
-                List { // temporary
-                    ForEach(flightLog.data) { activity in
-                        Text("\(activity.takeoffDate)")
-                        Text("\(activity.takeoffs)")
+                        activeSheet = .addActivity
+                        //isAddActivityVisible = true
                     }
                 }
 
             }
             .navigationBarTitle("Recency Monitor")
         }
-        .sheet(isPresented: $isAddActivityVisible) {
+        .sheet(item: $activeSheet) { item in
+            switch item {
+            case .seeActivities:
+                SeeActivities(flightLog: flightLog)
+            case .addActivity:
             AddActivity(flightLog: flightLog)
+            }
         }
+        /*.sheet(isPresented: $isSeeActivitiesVisible) {
+            SeeActivities(flightLog: flightLog)
+        }*/
+        /*.sheet(isPresented: $isAddActivityVisible) {
+            AddActivity(flightLog: flightLog)
+        }*/
     }
 }
 
