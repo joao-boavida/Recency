@@ -29,13 +29,11 @@ struct RecencyDetail: View {
     }
 
     var body: some View {
-        NavigationView {
-            Form {
-                takeoffLimitationText
-                landingLimitationText
-            }
-            .navigationBarTitle("Recency Detail")
+        Form {
+            takeoffLimitationText
+            landingLimitationText
         }
+        .navigationBarTitle("Recency Detail") //already hosted on the navigation view of the parent view
     }
 }
 
