@@ -42,12 +42,12 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
-                    DatePicker("Date", selection: $takeoffDate, displayedComponents: .date)
+                    DatePicker("Date", selection: $landingDate, displayedComponents: .date)
                         //.labelsHidden()
                 }
                 Section {
                     Button("Done") {
-                        let activity = FlightActivity(takeoffs: takeoffs, takeoffDate: takeoffDate, landings: landings, landingDates: landingDate)
+                        let activity = FlightActivity(takeoffs: takeoffs, takeoffDate: takeoffDate, landings: landings, landingDate: landingDate)
 
                         flightLog.data.append(activity)
                         presentationMode.wrappedValue.dismiss()

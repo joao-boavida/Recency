@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		039134622535B0F20009DC32 /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039134612535B0F20009DC32 /* DataStructure.swift */; };
+		039134672535BE910009DC32 /* RecencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039134662535BE910009DC32 /* RecencyDetail.swift */; };
 		03AEC7AD253447AE00EB75E1 /* RecencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7AC253447AE00EB75E1 /* RecencyApp.swift */; };
 		03AEC7AF253447AE00EB75E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7AE253447AE00EB75E1 /* ContentView.swift */; };
 		03AEC7B1253447B200EB75E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03AEC7B0253447B200EB75E1 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		039134612535B0F20009DC32 /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
+		039134662535BE910009DC32 /* RecencyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyDetail.swift; sourceTree = "<group>"; };
 		03AEC7A9253447AE00EB75E1 /* Recency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03AEC7AC253447AE00EB75E1 /* RecencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyApp.swift; sourceTree = "<group>"; };
 		03AEC7AE253447AE00EB75E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 			children = (
 				03AEC7AC253447AE00EB75E1 /* RecencyApp.swift */,
 				03AEC7AE253447AE00EB75E1 /* ContentView.swift */,
+				039134662535BE910009DC32 /* RecencyDetail.swift */,
+				039134612535B0F20009DC32 /* DataStructure.swift */,
 				03AEC7E02534920F00EB75E1 /* SeeActivities.swift */,
 				03AEC7DA2534677C00EB75E1 /* AddActivity.swift */,
 				03AEC7B0253447B200EB75E1 /* Assets.xcassets */,
@@ -267,6 +273,8 @@
 			files = (
 				03AEC7E12534920F00EB75E1 /* SeeActivities.swift in Sources */,
 				03AEC7AF253447AE00EB75E1 /* ContentView.swift in Sources */,
+				039134672535BE910009DC32 /* RecencyDetail.swift in Sources */,
+				039134622535B0F20009DC32 /* DataStructure.swift in Sources */,
 				03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */,
 				03AEC7AD253447AE00EB75E1 /* RecencyApp.swift in Sources */,
 			);

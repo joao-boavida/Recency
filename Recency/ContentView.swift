@@ -7,14 +7,7 @@
 
 import SwiftUI
 
-struct FlightActivity: Identifiable, Codable {
-    var id = UUID()
-    var insertionDate = Date()
-    let takeoffs: Int
-    let takeoffDate: Date
-    let landings: Int
-    let landingDates: Date
-}
+/* used since the navigation view only supports one sheet declaration. this enum manages the sheet to be shown*/
 
 enum ActiveSheet: Identifiable {
 
@@ -24,12 +17,6 @@ enum ActiveSheet: Identifiable {
     }
 }
 
-class FlightLog: ObservableObject {
-
-    let storageKey = "FlightActivity"
-
-    @Published var data = [FlightActivity]()
-}
 
 struct ContentView: View {
 
@@ -40,20 +27,43 @@ struct ContentView: View {
 
     @ObservedObject var flightLog = FlightLog()
 
+    var currentRecency: Text {
+        if flightLog.checkRecency() < Date() {
+            return Text("Recency Expired")
+        } else {
+            return Text("Recency OK")
+        }
+    }
+
+    var showingValidity: Bool {
+        flightLog.checkRecency() >= Date()
+    }
+
+    var nextLimitation: Text {
+        let recency = flightLog.checkRecency()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        let description = dateFormatter.string(from: recency)
+        return Text("Valid until \(description)")
+    }
+    
+
     var body: some View {
         NavigationView {
             VStack {
                 Form {
                     Section {
-                        Text("Current Status Here")
+                        currentRecency
                             .font(.largeTitle)
-                        Text("Next Limitation")
-                            .font(.headline)
+                        if showingValidity {
+                            NavigationLink(destination: RecencyDetail(takeOffLimitation: flightLog.checkTakeoffRecency(), landingLimitation: flightLog.checkLandingRecency())) {
+                                nextLimitation
+                                    .font(.headline)
+                            }
+                        }
                     }
-                    Section {
-                        Text("3 Takeoffs exp date")
-                        Text("3 Landings exp date")
-                    }
+                    
                     Button("See Activities... Debug: \(flightLog.data.count)") {
                         activeSheet = .seeActivities
                         //isSeeActivitiesVisible = true
