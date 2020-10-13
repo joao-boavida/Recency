@@ -7,6 +7,29 @@
 
 import SwiftUI
 
+struct ActivityDetail: View {
+    let activity: FlightActivity
+
+    var dateText: Text {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        let description = dateFormatter.string(from: activity.takeoffDate)
+        return Text(description)
+    }
+
+    var body: some View {
+        HStack(alignment: .center) {
+            dateText
+            Image(systemName: "arrow.up.forward.circle")
+            Text("\(activity.takeoffs)")
+            Image(systemName: "arrow.down.right.circle")
+            Text("\(activity.landings)")
+        }
+        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+    }
+}
+
 struct SeeActivities: View {
 
     @ObservedObject var flightLog: FlightLog
@@ -18,8 +41,7 @@ struct SeeActivities: View {
         NavigationView {
             Form {
                 ForEach(flightLog.data) { activity in
-                    Text("\(activity.takeoffDate.description)")
-                    Text("\(activity.takeoffs)")
+                    ActivityDetail(activity: activity)
                 }
                 .onDelete(perform: removeItems)
             }
