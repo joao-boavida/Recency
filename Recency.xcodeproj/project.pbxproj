@@ -16,7 +16,6 @@
 		03AEC7BF253447B300EB75E1 /* RecencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7BE253447B300EB75E1 /* RecencyTests.swift */; };
 		03AEC7CA253447B300EB75E1 /* RecencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */; };
 		03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7DA2534677C00EB75E1 /* AddActivity.swift */; };
-		03AEC7E12534920F00EB75E1 /* SeeActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7E02534920F00EB75E1 /* SeeActivities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyUITests.swift; sourceTree = "<group>"; };
 		03AEC7CB253447B300EB75E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AEC7DA2534677C00EB75E1 /* AddActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivity.swift; sourceTree = "<group>"; };
-		03AEC7E02534920F00EB75E1 /* SeeActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeActivities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +105,6 @@
 				03AEC7AE253447AE00EB75E1 /* ContentView.swift */,
 				039134662535BE910009DC32 /* RecencyDetail.swift */,
 				039134612535B0F20009DC32 /* DataStructure.swift */,
-				03AEC7E02534920F00EB75E1 /* SeeActivities.swift */,
 				03AEC7DA2534677C00EB75E1 /* AddActivity.swift */,
 				03AEC7B0253447B200EB75E1 /* Assets.xcassets */,
 				03AEC7B5253447B200EB75E1 /* Info.plist */,
@@ -271,7 +268,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03AEC7E12534920F00EB75E1 /* SeeActivities.swift in Sources */,
 				03AEC7AF253447AE00EB75E1 /* ContentView.swift in Sources */,
 				039134672535BE910009DC32 /* RecencyDetail.swift in Sources */,
 				039134622535B0F20009DC32 /* DataStructure.swift in Sources */,

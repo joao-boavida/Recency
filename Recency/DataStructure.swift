@@ -40,6 +40,11 @@ class FlightLog: ObservableObject {
         self.data = []
     }
 
+    //for preview and testing
+    init(emptyLog: Bool) {
+        self.data = [FlightActivity]()
+    }
+
     func checkRecency() -> Date {
 
         let takeoffRecencyDate = checkTakeoffRecency()

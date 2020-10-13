@@ -11,7 +11,7 @@ import SwiftUI
 
 enum ActiveSheet: Identifiable {
 
-    case seeActivities, addActivity
+    case addActivity
     var id: String {
         UUID().uuidString
     }
@@ -57,17 +57,13 @@ struct ContentView: View {
                         currentRecency
                             .font(.largeTitle)
                         if showingValidity {
-                            NavigationLink(destination: RecencyDetail(takeOffLimitation: flightLog.checkTakeoffRecency(), landingLimitation: flightLog.checkLandingRecency())) {
+                            NavigationLink(destination: RecencyDetail(flightLog: flightLog)) {
                                 nextLimitation
                                     .font(.headline)
                             }
                         }
                     }
-                    
-                    Button("See Activities... Debug: \(flightLog.data.count)") {
-                        activeSheet = .seeActivities
-                        //isSeeActivitiesVisible = true
-                    }
+
                     Button("Add Activity...") {
                         activeSheet = .addActivity
                         //isAddActivityVisible = true
@@ -79,18 +75,10 @@ struct ContentView: View {
         }
         .sheet(item: $activeSheet) { item in
             switch item {
-            case .seeActivities:
-                SeeActivities(flightLog: flightLog)
             case .addActivity:
             AddActivity(flightLog: flightLog)
             }
         }
-        /*.sheet(isPresented: $isSeeActivitiesVisible) {
-            SeeActivities(flightLog: flightLog)
-        }*/
-        /*.sheet(isPresented: $isAddActivityVisible) {
-            AddActivity(flightLog: flightLog)
-        }*/
     }
 }
 
