@@ -29,7 +29,13 @@ class FlightLog: ObservableObject {
             }
         }
 
-    init() {
+    init(emptyLog: Bool = false) {
+
+        guard emptyLog == false else { //used for testing
+            self.data = [FlightActivity]()
+            return
+        }
+
         if let data = UserDefaults.standard.data(forKey: storageKey) {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([FlightActivity].self, from: data) {
@@ -38,11 +44,6 @@ class FlightLog: ObservableObject {
             }
         }
         self.data = []
-    }
-
-    //for preview and testing
-    init(emptyLog: Bool) {
-        self.data = [FlightActivity]()
     }
 
     func checkRecency() -> Date {

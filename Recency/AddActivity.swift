@@ -22,6 +22,9 @@ struct AddActivity: View {
 
     let pickerLabels = ["0", "1", "2", "3+"]
 
+    let sixMonthsAgo = Calendar.current.date(byAdding: .month, value: -6, to: Date()) ?? .distantPast
+    let inOneMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? .distantFuture
+
     var body: some View {
         NavigationView {
             Form {
@@ -33,7 +36,7 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
-                    DatePicker("Date", selection: $takeoffDate, displayedComponents: .date)
+                    DatePicker("Date", selection: $takeoffDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
                         //.labelsHidden()
                 }
                 Section {
@@ -44,7 +47,7 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
-                    DatePicker("Date", selection: $landingDate, displayedComponents: .date)
+                    DatePicker("Date", selection: $landingDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
                         //.labelsHidden()
                 }
                 Section {

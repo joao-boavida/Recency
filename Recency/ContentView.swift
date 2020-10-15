@@ -29,7 +29,8 @@ struct ContentView: View {
     @ObservedObject var flightLog = FlightLog()
 
     var currentRecency: Text {
-        if flightLog.checkRecency() < Date() {
+        //recency is ok as long as the determined date is not in the past and also not earlier today.
+        if flightLog.checkRecency() < Date() && !Calendar.current.isDateInToday(flightLog.checkRecency()) {
             return Text("Recency Expired")
         } else {
             return Text("Recency OK")

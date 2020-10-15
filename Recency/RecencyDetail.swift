@@ -44,19 +44,28 @@ struct RecencyDetail: View {
     }
 
     var takeoffLimitationText: Text {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        let description = dateFormatter.string(from: takeOffLimitation)
-        return Text("Takeoffs valid until \(description)")
+        if takeOffLimitation >= Date() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            let description = dateFormatter.string(from: takeOffLimitation)
+            return Text("Takeoffs valid until \(description)")
+        } else {
+            return Text("Takeoffs not valid")
+        }
     }
 
     var landingLimitationText: Text {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        let description = dateFormatter.string(from: landingLimitation)
-        return Text("Landings valid until \(description)")
+
+        if landingLimitation >= Date() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            let description = dateFormatter.string(from: landingLimitation)
+            return Text("Landings valid until \(description)")
+        } else {
+            return Text("Landings not valid")
+        }
     }
 
     var body: some View {
@@ -75,6 +84,7 @@ struct RecencyDetail: View {
             }
         }
         .navigationBarTitle("Recency Detail") //already hosted on the navigation view of the parent view
+        .navigationBarItems(trailing: EditButton())
     }
 
     func removeItems(at offsets: IndexSet) {
