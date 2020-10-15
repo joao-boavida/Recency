@@ -5,6 +5,8 @@
 //  Created by Joao Boavida on 12/10/2020.
 //
 
+// swiftlint:disable line_length
+
 import SwiftUI
 
 struct AddActivity: View {

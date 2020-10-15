@@ -68,12 +68,9 @@ class FlightLog: ObservableObject {
     }
 }
 
-
-
 //testing
 
 var sampleFlightLog = FlightLog()
-
 
 // referenceDate
 
@@ -103,7 +100,6 @@ let movement3 = FlightActivity(takeoffs: 1, takeoffDate: thirtyDaysAgo, landings
 let hundredDaysAgo = Calendar.current.date(byAdding: .day, value: -100, to: referenceDate)!
 
 let movement4 = FlightActivity(takeoffs: 1, takeoffDate: hundredDaysAgo, landings: 1, landingDate: hundredDaysAgo)
-
 
 sampleFlightLog.data.append(movement1)
 sampleFlightLog.data.append(movement2)

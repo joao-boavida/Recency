@@ -5,6 +5,8 @@
 //  Created by Joao Boavida on 12/10/2020.
 //
 
+// swiftlint:disable identifier_name
+
 import SwiftUI
 
 /* used since the navigation view only supports one sheet declaration. this enum manages the sheet to be shown*/
@@ -16,7 +18,6 @@ enum ActiveSheet: Identifiable {
         UUID().uuidString
     }
 }
-
 
 struct ContentView: View {
 
@@ -47,7 +48,6 @@ struct ContentView: View {
         let description = dateFormatter.string(from: recency)
         return Text("Valid until \(description)")
     }
-    
 
     var body: some View {
         NavigationView {
@@ -63,10 +63,8 @@ struct ContentView: View {
                             }
                         }
                     }
-
                     Button("Add Activity...") {
                         activeSheet = .addActivity
-                        //isAddActivityVisible = true
                     }
                 }
 

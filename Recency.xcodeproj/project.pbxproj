@@ -16,6 +16,9 @@
 		03AEC7BF253447B300EB75E1 /* RecencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7BE253447B300EB75E1 /* RecencyTests.swift */; };
 		03AEC7CA253447B300EB75E1 /* RecencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */; };
 		03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7DA2534677C00EB75E1 /* AddActivity.swift */; };
+		0D719F57DCF77CE6CF619989 /* Pods_Recency_RecencyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8482F05F24C6D9EE9C074B8C /* Pods_Recency_RecencyUITests.framework */; };
+		AF4C25CC28FA2EEA1EFC43A9 /* Pods_Recency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A4CA4666DDEB121E75FD69 /* Pods_Recency.framework */; };
+		F2C4B8F00962E546E2ED28A0 /* Pods_RecencyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A9FA60CFCD280A26F148D /* Pods_RecencyTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,15 @@
 		03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyUITests.swift; sourceTree = "<group>"; };
 		03AEC7CB253447B300EB75E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AEC7DA2534677C00EB75E1 /* AddActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivity.swift; sourceTree = "<group>"; };
+		60A4CA4666DDEB121E75FD69 /* Pods_Recency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		748B84A6D8CFFF388D012799 /* Pods-Recency.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recency.release.xcconfig"; path = "Target Support Files/Pods-Recency/Pods-Recency.release.xcconfig"; sourceTree = "<group>"; };
+		8482F05F24C6D9EE9C074B8C /* Pods_Recency_RecencyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recency_RecencyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		982AEE071367B55AB1562930 /* Pods-Recency-RecencyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recency-RecencyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Recency-RecencyUITests/Pods-Recency-RecencyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B68B02EE4CAFA1A0B6E6D089 /* Pods-RecencyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecencyTests.debug.xcconfig"; path = "Target Support Files/Pods-RecencyTests/Pods-RecencyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CC80A560C504C87EBD5EE48A /* Pods-Recency.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recency.debug.xcconfig"; path = "Target Support Files/Pods-Recency/Pods-Recency.debug.xcconfig"; sourceTree = "<group>"; };
+		D684F8A589460CBA82118706 /* Pods-Recency-RecencyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recency-RecencyUITests.release.xcconfig"; path = "Target Support Files/Pods-Recency-RecencyUITests/Pods-Recency-RecencyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E73A9FA60CFCD280A26F148D /* Pods_RecencyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecencyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC071854780666DCCE432644 /* Pods-RecencyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecencyTests.release.xcconfig"; path = "Target Support Files/Pods-RecencyTests/Pods-RecencyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF4C25CC28FA2EEA1EFC43A9 /* Pods_Recency.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2C4B8F00962E546E2ED28A0 /* Pods_RecencyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D719F57DCF77CE6CF619989 /* Pods_Recency_RecencyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +100,8 @@
 				03AEC7BD253447B300EB75E1 /* RecencyTests */,
 				03AEC7C8253447B300EB75E1 /* RecencyUITests */,
 				03AEC7AA253447AE00EB75E1 /* Products */,
+				96723EFC013EFA66180922F9 /* Pods */,
+				9C04598C28C159E95CB76BBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +156,29 @@
 			path = RecencyUITests;
 			sourceTree = "<group>";
 		};
+		96723EFC013EFA66180922F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC80A560C504C87EBD5EE48A /* Pods-Recency.debug.xcconfig */,
+				748B84A6D8CFFF388D012799 /* Pods-Recency.release.xcconfig */,
+				982AEE071367B55AB1562930 /* Pods-Recency-RecencyUITests.debug.xcconfig */,
+				D684F8A589460CBA82118706 /* Pods-Recency-RecencyUITests.release.xcconfig */,
+				B68B02EE4CAFA1A0B6E6D089 /* Pods-RecencyTests.debug.xcconfig */,
+				FC071854780666DCCE432644 /* Pods-RecencyTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9C04598C28C159E95CB76BBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60A4CA4666DDEB121E75FD69 /* Pods_Recency.framework */,
+				8482F05F24C6D9EE9C074B8C /* Pods_Recency_RecencyUITests.framework */,
+				E73A9FA60CFCD280A26F148D /* Pods_RecencyTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03AEC7CE253447B300EB75E1 /* Build configuration list for PBXNativeTarget "Recency" */;
 			buildPhases = (
+				3DB4DC7BDF49EB63E43432F5 /* [CP] Check Pods Manifest.lock */,
 				03AEC7A5253447AE00EB75E1 /* Sources */,
 				03AEC7A6253447AE00EB75E1 /* Frameworks */,
 				03AEC7A7253447AE00EB75E1 /* Resources */,
+				03735F6525386D480013A885 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -163,6 +205,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03AEC7D1253447B300EB75E1 /* Build configuration list for PBXNativeTarget "RecencyTests" */;
 			buildPhases = (
+				55D36848245FA50A4A3B4DCB /* [CP] Check Pods Manifest.lock */,
 				03AEC7B6253447B300EB75E1 /* Sources */,
 				03AEC7B7253447B300EB75E1 /* Frameworks */,
 				03AEC7B8253447B300EB75E1 /* Resources */,
@@ -181,6 +224,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03AEC7D4253447B300EB75E1 /* Build configuration list for PBXNativeTarget "RecencyUITests" */;
 			buildPhases = (
+				FF1BED20F734C057CA042B12 /* [CP] Check Pods Manifest.lock */,
 				03AEC7C1253447B300EB75E1 /* Sources */,
 				03AEC7C2253447B300EB75E1 /* Frameworks */,
 				03AEC7C3253447B300EB75E1 /* Resources */,
@@ -262,6 +306,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03735F6525386D480013A885 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		3DB4DC7BDF49EB63E43432F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Recency-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55D36848245FA50A4A3B4DCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecencyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF1BED20F734C057CA042B12 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Recency-RecencyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		03AEC7A5253447AE00EB75E1 /* Sources */ = {
@@ -426,6 +556,7 @@
 		};
 		03AEC7CF253447B300EB75E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC80A560C504C87EBD5EE48A /* Pods-Recency.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -442,12 +573,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Boavida.Recency;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		03AEC7D0253447B300EB75E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 748B84A6D8CFFF388D012799 /* Pods-Recency.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -464,12 +596,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Boavida.Recency;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		03AEC7D2253447B300EB75E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B68B02EE4CAFA1A0B6E6D089 /* Pods-RecencyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -492,6 +625,7 @@
 		};
 		03AEC7D3253447B300EB75E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC071854780666DCCE432644 /* Pods-RecencyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -514,6 +648,7 @@
 		};
 		03AEC7D5253447B300EB75E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 982AEE071367B55AB1562930 /* Pods-Recency-RecencyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -534,6 +669,7 @@
 		};
 		03AEC7D6253447B300EB75E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D684F8A589460CBA82118706 /* Pods-Recency-RecencyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

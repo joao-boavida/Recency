@@ -13,7 +13,6 @@ class RecencyTests: XCTestCase {
     override func setUpWithError() throws {
         let sampleFlightLog = FlightLog()
 
-
         // referenceDate
 
         var components = DateComponents()
@@ -40,7 +39,6 @@ class RecencyTests: XCTestCase {
         let hundredDaysAgo = Calendar.current.date(byAdding: .day, value: -100, to: referenceDate)!
 
         let movement4 = FlightActivity(takeoffs: 1, takeoffDate: hundredDaysAgo, landings: 1, landingDate: hundredDaysAgo)
-
 
         sampleFlightLog.data.append(movement1)
         sampleFlightLog.data.append(movement2)

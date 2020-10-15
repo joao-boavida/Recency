@@ -114,7 +114,6 @@ struct RecencyDetail_Previews: PreviewProvider {
 
         let movement4 = FlightActivity(takeoffs: 1, takeoffDate: hundredDaysAgo, landings: 1, landingDate: hundredDaysAgo)
 
-
         sampleFlightLog.data.append(movement1)
         sampleFlightLog.data.append(movement2)
         sampleFlightLog.data.append(movement3)
