@@ -15,8 +15,7 @@ struct AddActivity: View {
 
     @State private var landings = 1
     @State private var takeoffs = 1
-    @State private var takeoffDate = Date()
-    @State private var landingDate = Date()
+    @State private var activityDate = Date()
 
     @Environment(\.presentationMode) var presentationMode
 
@@ -36,10 +35,6 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
-                    DatePicker("Date", selection: $takeoffDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
-                        //.labelsHidden()
-                }
-                Section {
                     Text("Landings")
                         .font(.headline)
                     Picker("Take-offs", selection: $landings) {
@@ -47,17 +42,19 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
-                    DatePicker("Date", selection: $landingDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
-                        //.labelsHidden()
+                }
+                Section {
+                    DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
                 }
                 Section {
                     Button("Done") {
-                        let activity = FlightActivity(takeoffs: takeoffs, takeoffDate: takeoffDate, landings: landings, landingDate: landingDate)
+                        let activity = FlightActivity(takeoffs: takeoffs, activityDate: activityDate, landings: landings)
 
-                        flightLog.data.append(activity)
+                        flightLog.addActivity(activity: activity)
                         presentationMode.wrappedValue.dismiss()
 
                     }
+                    .disabled(landings == 0 && takeoffs == 0)
                     .font(.headline)
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()

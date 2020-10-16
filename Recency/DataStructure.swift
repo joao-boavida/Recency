@@ -11,9 +11,8 @@ struct FlightActivity: Identifiable, Codable {
     var id = UUID()
     var insertionDate = Date()
     let takeoffs: Int
-    let takeoffDate: Date
+    let activityDate: Date
     let landings: Int
-    let landingDate: Date
 }
 
 class FlightLog: ObservableObject {
@@ -31,7 +30,7 @@ class FlightLog: ObservableObject {
 
     init(emptyLog: Bool = false) {
 
-        guard emptyLog == false else { //used for testing
+        guard emptyLog == false else { //used for testing and previews
             self.data = [FlightActivity]()
             return
         }
@@ -40,10 +39,26 @@ class FlightLog: ObservableObject {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([FlightActivity].self, from: data) {
                 self.data = decoded
+                //data more than 6months old is discarded
+                let sixMonthsAgo = Calendar.current.date(byAdding: .month, value: -6, to: Date()) ?? .distantPast
+                self.data = self.data.filter {
+                    $0.activityDate > sixMonthsAgo
+                }
                 return
             }
         }
         self.data = []
+    }
+
+    func addActivity(activity: FlightActivity) {
+        data.append(activity)
+        data.sort {
+            $1.activityDate < $0.activityDate
+        }
+    }
+
+    func isRecencyValid(at date: Date) -> Bool {
+        checkRecency() > date || Calendar.current.isDate(checkRecency(), inSameDayAs: date)
     }
 
     func checkRecency() -> Date {
@@ -60,7 +75,7 @@ class FlightLog: ObservableObject {
 
         //sort the flight log by takeoff dates beginning with the most recent one
         let sortedFlightLog = data.sorted {
-            $0.takeoffDate > $1.takeoffDate
+            $0.activityDate > $1.activityDate
         }
 
         var takeOffCount = 0
@@ -68,7 +83,7 @@ class FlightLog: ObservableObject {
 
         for movement in sortedFlightLog {
             takeOffCount += movement.takeoffs
-            limitingTakeoffDate = movement.takeoffDate
+            limitingTakeoffDate = movement.activityDate
 
             if takeOffCount > 2 {
                 //print("checkTakeoffRecency limitingTakeoffDate: \(limitingTakeoffDate)")
@@ -81,7 +96,7 @@ class FlightLog: ObservableObject {
 
     func checkLandingRecency() -> Date {
         let sortedFlightLog = data.sorted {
-            $0.landingDate > $1.landingDate
+            $0.activityDate > $1.activityDate
         }
 
         var landingCount = 0
@@ -89,7 +104,7 @@ class FlightLog: ObservableObject {
 
         for movement in sortedFlightLog {
             landingCount += movement.landings
-            limitingLandingDate = movement.landingDate
+            limitingLandingDate = movement.activityDate
 
             if landingCount > 2 {
                 //print("checkLandingRecency limitingLandingDate: \(limitingLandingDate)")

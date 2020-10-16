@@ -30,15 +30,15 @@ struct ContentView: View {
 
     var currentRecency: Text {
         //recency is ok as long as the determined date is not in the past and also not earlier today.
-        if flightLog.checkRecency() < Date() && !Calendar.current.isDateInToday(flightLog.checkRecency()) {
-            return Text("Recency Expired")
-        } else {
+        if flightLog.isRecencyValid(at: Date()) {
             return Text("Recency OK")
+        } else {
+            return Text("Recency Expired")
         }
     }
 
     var showingValidity: Bool {
-        flightLog.checkRecency() >= Date()
+        flightLog.isRecencyValid(at: Date())
     }
 
     var nextLimitation: Text {
@@ -55,18 +55,34 @@ struct ContentView: View {
             VStack {
                 Form {
                     Section {
-                        currentRecency
-                            .font(.largeTitle)
+                        HStack {
+                            Spacer()
+                            currentRecency
+                                .font(.largeTitle)
+                            Spacer()
+                        }
                         if showingValidity {
                             NavigationLink(destination: RecencyDetail(flightLog: flightLog)) {
                                 nextLimitation
                                     .font(.headline)
                             }
                         }
+                    }.foregroundColor(showingValidity ? .green : .red)
+
+                    .multilineTextAlignment(.center)
+                    Section(header: Text("Latest 3 Activities")) {
+                        if flightLog.data.isEmpty {
+                            Text("Add activities to begin.")
+                        } else {
+                            ForEach(flightLog.data.prefix(3)) { activity in
+                                ActivityDetail(activity: activity)
+                            }
+                        }
                     }
                     Button("Add Activity...") {
                         activeSheet = .addActivity
                     }
+                    .font(.headline)
                 }
 
             }
@@ -84,5 +100,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environment(\.colorScheme, .dark)
     }
 }
