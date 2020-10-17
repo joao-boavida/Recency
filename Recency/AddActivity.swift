@@ -5,18 +5,19 @@
 //  Created by Joao Boavida on 12/10/2020.
 //
 
-// swiftlint:disable line_length
-
 import SwiftUI
 
+/// This view is presented as a sheet to add activities to the log
 struct AddActivity: View {
 
+    /// the FlightLog which will be created for insertion
     @ObservedObject var flightLog: FlightLog
 
     @State private var landings = 1
     @State private var takeoffs = 1
     @State private var activityDate = Date()
 
+    /// used to make the view dismiss itself
     @Environment(\.presentationMode) var presentationMode
 
     let pickerLabels = ["0", "1", "2", "3+"]

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The main data structure of the app, bundling one activity that may contain take-offs, landings or both as well as the associated date. insertionDate not used at the moment.
 struct FlightActivity: Identifiable, Codable {
     var id = UUID()
     var insertionDate = Date()
@@ -15,6 +16,7 @@ struct FlightActivity: Identifiable, Codable {
     let landings: Int
 }
 
+/// This class is used to store an array of FlightActivity data as well as its storage key on UserDefaults
 class FlightLog: ObservableObject {
 
     let storageKey = "FlightActivity"
@@ -28,9 +30,11 @@ class FlightLog: ObservableObject {
             }
         }
 
+    /// Custom initialiser to get data from user defaults
+    /// - Parameter emptyLog: if true an empty log will be created, for previewing and testing
     init(emptyLog: Bool = false) {
 
-        guard emptyLog == false else { //used for testing and previews
+        guard emptyLog == false else {
             self.data = [FlightActivity]()
             return
         }
@@ -50,6 +54,8 @@ class FlightLog: ObservableObject {
         self.data = []
     }
 
+    /// This function adds an activity to the log
+    /// - Parameter activity: the activity to be added
     func addActivity(activity: FlightActivity) {
         data.append(activity)
         data.sort {
@@ -57,10 +63,15 @@ class FlightLog: ObservableObject {
         }
     }
 
+    /// This function checks recency validity (returned as a Bool) at a given date. The validity is extended up to the end of the day of that date in the current calendar.
+    /// - Parameter date: date to be checked
+    /// - Returns: validity as boolean
     func isRecencyValid(at date: Date) -> Bool {
         checkRecency() > date || Calendar.current.isDate(checkRecency(), inSameDayAs: date)
     }
 
+    /// Checks the recency validity limit date of the current data structure
+    /// - Returns: validity limit, distant past if unable to determine
     func checkRecency() -> Date {
 
         let takeoffRecencyDate = checkTakeoffRecency()
@@ -71,6 +82,8 @@ class FlightLog: ObservableObject {
 
     }
 
+    /// Checks the recency validity date of the takeoffs in the current data structure
+    /// - Returns: takeoff validity limit, distant past if unable to determine
     func checkTakeoffRecency() -> Date {
 
         //sort the flight log by takeoff dates beginning with the most recent one
@@ -86,7 +99,6 @@ class FlightLog: ObservableObject {
             limitingTakeoffDate = movement.activityDate
 
             if takeOffCount > 2 {
-                //print("checkTakeoffRecency limitingTakeoffDate: \(limitingTakeoffDate)")
                 return Calendar.current.date(byAdding: .day, value: 90, to: limitingTakeoffDate)!
             }
         }
@@ -94,6 +106,8 @@ class FlightLog: ObservableObject {
         return Date.distantPast
     }
 
+    /// Checks the landing validity limit date of the current data structure
+    /// - Returns: landing validity limit, distant past if unable to determine
     func checkLandingRecency() -> Date {
         let sortedFlightLog = data.sorted {
             $0.activityDate > $1.activityDate
@@ -107,7 +121,6 @@ class FlightLog: ObservableObject {
             limitingLandingDate = movement.activityDate
 
             if landingCount > 2 {
-                //print("checkLandingRecency limitingLandingDate: \(limitingLandingDate)")
                 return Calendar.current.date(byAdding: .day, value: 90, to: limitingLandingDate)!
             }
         }

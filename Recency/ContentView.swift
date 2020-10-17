@@ -5,12 +5,9 @@
 //  Created by Joao Boavida on 12/10/2020.
 //
 
-// swiftlint:disable identifier_name
-
 import SwiftUI
 
-/* used since the navigation view only supports one sheet declaration. this enum manages the sheet to be shown*/
-
+/// this enum is used for managing multiple sheets; in this case only one sheet is used.
 enum ActiveSheet: Identifiable {
 
     case addActivity
@@ -19,17 +16,15 @@ enum ActiveSheet: Identifiable {
     }
 }
 
+/// This is the app's main view
 struct ContentView: View {
-
-    @State private var isAddActivityVisible = false
-    @State private var isSeeActivitiesVisible = false
 
     @State private var activeSheet: ActiveSheet?
 
+    /// The app's database
     @ObservedObject var flightLog = FlightLog()
 
     var currentRecency: Text {
-        //recency is ok as long as the determined date is not in the past and also not earlier today.
         if flightLog.isRecencyValid(at: Date()) {
             return Text("Recency OK")
         } else {

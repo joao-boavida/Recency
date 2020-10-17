@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+/// This subview is a line of the activity log list
 struct ActivityDetail: View {
 
+    /// The activity to be displayed
     let activity: FlightActivity
 
+    /// The formatted activity date
     var dateText: Text {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -32,6 +35,7 @@ struct ActivityDetail: View {
     }
 }
 
+/// Main view of the recency detail screen showing landing and take-off validity as well as an activity log
 struct RecencyDetail: View {
 
     @ObservedObject var flightLog: FlightLog
@@ -49,7 +53,7 @@ struct RecencyDetail: View {
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
             let description = dateFormatter.string(from: takeOffLimitation)
-            return Text("Takeoffs valid until \(description)")
+            return Text("Takeoffs: \(description)")
         } else {
             return Text("Takeoffs not valid")
         }
@@ -62,7 +66,7 @@ struct RecencyDetail: View {
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
             let description = dateFormatter.string(from: landingLimitation)
-            return Text("Landings valid until \(description)")
+            return Text("Landings: \(description)")
         } else {
             return Text("Landings not valid")
         }
@@ -71,10 +75,19 @@ struct RecencyDetail: View {
     var body: some View {
         Form {
             Section(header: Text("Takeoff and Landing Validity")) {
-                takeoffLimitationText
-                    .font(.title2)
-                landingLimitationText
-                    .font(.title2)
+                HStack {
+                    Spacer()
+                    takeoffLimitationText
+                        .font(.title3)
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+                    landingLimitationText
+                        .font(.title3)
+                    Spacer()
+                }
+
             }
             Section(header: Text("Activity log")) {
                 ForEach(flightLog.data) { activity in
@@ -87,6 +100,8 @@ struct RecencyDetail: View {
         .navigationBarItems(trailing: EditButton())
     }
 
+    /// Handles activity deletion from the data array
+    /// - Parameter offsets: offsets from the line the user selected for deletion
     func removeItems(at offsets: IndexSet) {
         flightLog.data.remove(atOffsets: offsets)
     }
