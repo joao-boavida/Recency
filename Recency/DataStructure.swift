@@ -19,13 +19,13 @@ struct FlightActivity: Identifiable, Codable {
 /// This class is used to store an array of FlightActivity data as well as its storage key on UserDefaults
 class FlightLog: ObservableObject {
 
-    let storageKey = "FlightActivity"
+    let flightActivityStorageKey = "FlightActivity"
 
     @Published var data: [FlightActivity] {
         didSet {
                 let encoder = JSONEncoder()
                 if let encoded = try? encoder.encode(data) {
-                    UserDefaults.standard.set(encoded, forKey: storageKey)
+                    UserDefaults.standard.set(encoded, forKey: flightActivityStorageKey)
                 }
             }
         }
@@ -36,10 +36,11 @@ class FlightLog: ObservableObject {
 
         guard emptyLog == false else {
             self.data = [FlightActivity]()
+
             return
         }
 
-        if let data = UserDefaults.standard.data(forKey: storageKey) {
+        if let data = UserDefaults.standard.data(forKey: flightActivityStorageKey) {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([FlightActivity].self, from: data) {
                 self.data = decoded
@@ -51,6 +52,7 @@ class FlightLog: ObservableObject {
                 return
             }
         }
+        /*self.firstRun = true*/
         self.data = []
     }
 

@@ -16,6 +16,7 @@
 		03AEC7BF253447B300EB75E1 /* RecencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7BE253447B300EB75E1 /* RecencyTests.swift */; };
 		03AEC7CA253447B300EB75E1 /* RecencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */; };
 		03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7DA2534677C00EB75E1 /* AddActivity.swift */; };
+		03BDD5B9253B6AF000A8652D /* WelcomeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDD5B8253B6AF000A8652D /* WelcomeSheet.swift */; };
 		0D719F57DCF77CE6CF619989 /* Pods_Recency_RecencyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8482F05F24C6D9EE9C074B8C /* Pods_Recency_RecencyUITests.framework */; };
 		AF4C25CC28FA2EEA1EFC43A9 /* Pods_Recency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A4CA4666DDEB121E75FD69 /* Pods_Recency.framework */; };
 		F2C4B8F00962E546E2ED28A0 /* Pods_RecencyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A9FA60CFCD280A26F148D /* Pods_RecencyTests.framework */; };
@@ -54,6 +55,7 @@
 		03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyUITests.swift; sourceTree = "<group>"; };
 		03AEC7CB253447B300EB75E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AEC7DA2534677C00EB75E1 /* AddActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivity.swift; sourceTree = "<group>"; };
+		03BDD5B8253B6AF000A8652D /* WelcomeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheet.swift; sourceTree = "<group>"; };
 		60A4CA4666DDEB121E75FD69 /* Pods_Recency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		748B84A6D8CFFF388D012799 /* Pods-Recency.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recency.release.xcconfig"; path = "Target Support Files/Pods-Recency/Pods-Recency.release.xcconfig"; sourceTree = "<group>"; };
 		8482F05F24C6D9EE9C074B8C /* Pods_Recency_RecencyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recency_RecencyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 				039134662535BE910009DC32 /* RecencyDetail.swift */,
 				039134612535B0F20009DC32 /* DataStructure.swift */,
 				03AEC7DA2534677C00EB75E1 /* AddActivity.swift */,
+				03BDD5B8253B6AF000A8652D /* WelcomeSheet.swift */,
 				03AEC7B0253447B200EB75E1 /* Assets.xcassets */,
 				03AEC7B5253447B200EB75E1 /* Info.plist */,
 				03AEC7B2253447B200EB75E1 /* Preview Content */,
@@ -402,6 +405,7 @@
 				039134672535BE910009DC32 /* RecencyDetail.swift in Sources */,
 				039134622535B0F20009DC32 /* DataStructure.swift in Sources */,
 				03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */,
+				03BDD5B9253B6AF000A8652D /* WelcomeSheet.swift in Sources */,
 				03AEC7AD253447AE00EB75E1 /* RecencyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

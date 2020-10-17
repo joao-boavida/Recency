@@ -72,5 +72,6 @@ struct AddActivity: View {
 struct AddActivity_Previews: PreviewProvider {
     static var previews: some View {
         AddActivity(flightLog: FlightLog())
+            .environment(\.colorScheme, .dark)
     }
 }

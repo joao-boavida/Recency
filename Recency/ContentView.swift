@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-/// this enum is used for managing multiple sheets; in this case only one sheet is used.
+/// this enum is used for managing multiple sheets
 enum ActiveSheet: Identifiable {
 
     case addActivity
+    case welcomeSheet
+
     var id: String {
         UUID().uuidString
     }
@@ -18,6 +20,8 @@ enum ActiveSheet: Identifiable {
 
 /// This is the app's main view
 struct ContentView: View {
+
+    let secondPlusRunStorageKey = "SecondPlusRun"
 
     @State private var activeSheet: ActiveSheet?
 
@@ -86,7 +90,17 @@ struct ContentView: View {
         .sheet(item: $activeSheet) { item in
             switch item {
             case .addActivity:
-            AddActivity(flightLog: flightLog)
+                AddActivity(flightLog: flightLog)
+            case .welcomeSheet:
+                WelcomeSheet()
+            }
+        }
+        .onAppear {
+            //check for first run here
+            if UserDefaults.standard.bool(forKey: secondPlusRunStorageKey) == false {
+                //first run
+                UserDefaults.standard.set(true, forKey: secondPlusRunStorageKey)
+                activeSheet = .welcomeSheet
             }
         }
     }
