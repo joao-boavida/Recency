@@ -25,11 +25,13 @@ struct ContentView: View {
 
     @State private var activeSheet: ActiveSheet?
 
+    @State private var now = Date()
+
     /// The app's database
     @ObservedObject var flightLog = FlightLog()
 
     var currentRecency: Text {
-        if flightLog.isRecencyValid(at: Date()) {
+        if flightLog.isRecencyValid(at: now) {
             return Text("Recency OK")
         } else {
             return Text("Recency Expired")
@@ -37,7 +39,7 @@ struct ContentView: View {
     }
 
     var showingValidity: Bool {
-        flightLog.isRecencyValid(at: Date())
+        flightLog.isRecencyValid(at: now)
     }
 
     var nextLimitation: Text {
@@ -96,6 +98,8 @@ struct ContentView: View {
             }
         }
         .onAppear {
+            //update reference date
+            now = Date()
             //check for first run here
             if UserDefaults.standard.bool(forKey: secondPlusRunStorageKey) == false {
                 //first run
