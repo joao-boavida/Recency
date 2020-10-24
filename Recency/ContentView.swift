@@ -76,8 +76,9 @@ struct ContentView: View {
                             Text("Add activities to begin.")
                         } else {
                             ForEach(flightLog.data.prefix(3)) { activity in
-                                ActivityDetail(activity: activity)
+                                ActivityDetail(flightLog: flightLog, activity: activity)
                             }
+                            .onDelete(perform: removeItems)
                         }
                     }
                     Button("Add Activity...") {
@@ -108,6 +109,13 @@ struct ContentView: View {
             }
         }
     }
+
+    /// Handles activity deletion from the data array
+    /// - Parameter offsets: offsets from the line the user selected for deletion
+    func removeItems(at offsets: IndexSet) {
+        flightLog.data.remove(atOffsets: offsets)
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

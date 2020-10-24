@@ -10,6 +10,8 @@ import SwiftUI
 /// This subview is a line of the activity log list
 struct ActivityDetail: View {
 
+    @ObservedObject var flightLog: FlightLog
+
     /// The activity to be displayed
     let activity: FlightActivity
 
@@ -23,15 +25,17 @@ struct ActivityDetail: View {
     }
 
     var body: some View {
-        HStack(alignment: .lastTextBaseline) {
-            dateText
-            Spacer()
-            Image(systemName: "arrow.up.forward.circle")
-            Text("\(activity.takeoffs)")
-            Image(systemName: "arrow.down.right.circle")
-            Text("\(activity.landings)")
+        NavigationLink(destination: EditActivity(flightLog: flightLog, originalActivity: activity)) {
+            HStack(alignment: .lastTextBaseline) {
+                dateText
+                Spacer()
+                Image(systemName: "arrow.up.forward.circle")
+                Text("\(activity.takeoffs)")
+                Image(systemName: "arrow.down.right.circle")
+                Text("\(activity.landings)")
+            }
+            .font(.title3)
         }
-        .font(.title3)
     }
 }
 
@@ -91,13 +95,12 @@ struct RecencyDetail: View {
             }
             Section(header: Text("Activity log")) {
                 ForEach(flightLog.data) { activity in
-                    ActivityDetail(activity: activity)
+                    ActivityDetail(flightLog: flightLog, activity: activity)
                 }
                 .onDelete(perform: removeItems)
             }
         }
         .navigationBarTitle("Recency Detail") //already hosted on the navigation view of the parent view
-        .navigationBarItems(trailing: EditButton())
     }
 
     /// Handles activity deletion from the data array
