@@ -8,7 +8,7 @@
 import Foundation
 
 /// The main data structure of the app, bundling one activity that may contain take-offs, landings or both as well as the associated date. insertionDate not used at the moment.
-struct FlightActivity: Identifiable, Codable {
+struct FlightActivity: Identifiable, Codable, Equatable {
     var id = UUID()
     var insertionDate = Date()
     let takeoffs: Int

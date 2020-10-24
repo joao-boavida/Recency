@@ -13,7 +13,7 @@
 		03AEC7AF253447AE00EB75E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7AE253447AE00EB75E1 /* ContentView.swift */; };
 		03AEC7B1253447B200EB75E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03AEC7B0253447B200EB75E1 /* Assets.xcassets */; };
 		03AEC7B4253447B200EB75E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03AEC7B3253447B200EB75E1 /* Preview Assets.xcassets */; };
-		03AEC7BF253447B300EB75E1 /* RecencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7BE253447B300EB75E1 /* RecencyTests.swift */; };
+		03AEC7BF253447B300EB75E1 /* DataStructureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7BE253447B300EB75E1 /* DataStructureTests.swift */; };
 		03AEC7CA253447B300EB75E1 /* RecencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */; };
 		03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC7DA2534677C00EB75E1 /* AddActivity.swift */; };
 		03BDD5B9253B6AF000A8652D /* WelcomeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDD5B8253B6AF000A8652D /* WelcomeSheet.swift */; };
@@ -49,7 +49,7 @@
 		03AEC7B3253447B200EB75E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03AEC7B5253447B200EB75E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AEC7BA253447B300EB75E1 /* RecencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		03AEC7BE253447B300EB75E1 /* RecencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyTests.swift; sourceTree = "<group>"; };
+		03AEC7BE253447B300EB75E1 /* DataStructureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructureTests.swift; sourceTree = "<group>"; };
 		03AEC7C0253447B300EB75E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AEC7C5253447B300EB75E1 /* RecencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03AEC7C9253447B300EB75E1 /* RecencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyUITests.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		03AEC7BD253447B300EB75E1 /* RecencyTests */ = {
 			isa = PBXGroup;
 			children = (
-				03AEC7BE253447B300EB75E1 /* RecencyTests.swift */,
+				03AEC7BE253447B300EB75E1 /* DataStructureTests.swift */,
 				03AEC7C0253447B300EB75E1 /* Info.plist */,
 			);
 			path = RecencyTests;
@@ -414,7 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03AEC7BF253447B300EB75E1 /* RecencyTests.swift in Sources */,
+				03AEC7BF253447B300EB75E1 /* DataStructureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
