@@ -48,7 +48,7 @@ struct EditActivity: View {
                 DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
             }
             Section {
-                Button("Done") {
+                Button("Save Changes") {
                     let activity = FlightActivity(id: originalActivity.id, insertionDate: originalActivity.insertionDate, takeoffs: takeoffs, activityDate: activityDate, landings: landings)
 
                     let indexToRemove = flightLog.data.firstIndex(where: { $0.id == originalActivity.id})

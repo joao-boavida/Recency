@@ -26,9 +26,9 @@ struct WelcomeSheet: View {
                     .font(.largeTitle)
                 //Spacer()
                 Text("""
-This app helps you keep track of your takeoffs and landings to make sure you comply with EASA-FCL.060 Recent Experience requirements.
+This app helps you keep track of your compliance with EASA-FCL.060 / FAA 14 CFR 61.57 Recent Experience requirements by logging your latest takeoffs and landings.
 
-To begin add your most recent flights and sim sessions by pressing "Add Activity".
+To begin add your most recent flights and simulator sessions by pressing "Add Activity".
 
 Fly safe!
 """)
