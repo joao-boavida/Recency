@@ -8,7 +8,7 @@ This privacy policy describes what information the developer of Flight Recency c
 
 **Flight Recency does not collect any personal identifiable information or any user data.**
 
-The flight details you enter in order to enable the application to work are only stored locally on your device. Entries more than 6 months ago are not allowed. Entries that become more than 6 months old are deleted when the application is launched as they do not impact the application results.
+The flight details you enter in order to enable the application to work are only stored locally on your device. Entries more than 6 months old are not allowed. Entries that become more than 6 months old are deleted when the application is launched as they do not impact the application results.
 
 **Deleting the app deletes all the information that has been entered in it.**
 
