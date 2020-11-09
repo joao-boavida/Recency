@@ -100,7 +100,7 @@ struct RecencyDetail: View {
                 .onDelete(perform: removeItems)
             }
         }
-        .navigationBarTitle("Recency Detail") //already hosted on the navigation view of the parent view
+        .navigationBarTitle("Recency Detail", displayMode: .inline)
     }
 
     /// Handles activity deletion from the data array
@@ -130,12 +130,12 @@ struct RecencyDetail_Previews: PreviewProvider {
         // 3 days ago
         let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: referenceDate)!
 
-        let movement2 = FlightActivity(takeoffs: 1, activityDate: threeDaysAgo, landings: 1)
+        let movement2 = FlightActivity(takeoffs: 2, activityDate: threeDaysAgo, landings: 1)
 
         // 30 days ago
         let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -30, to: referenceDate)!
 
-        let movement3 = FlightActivity(takeoffs: 1, activityDate: thirtyDaysAgo, landings: 1)
+        let movement3 = FlightActivity(takeoffs: 1, activityDate: thirtyDaysAgo, landings: 3)
 
         // 100 days ago
         let hundredDaysAgo = Calendar.current.date(byAdding: .day, value: -100, to: referenceDate)!
