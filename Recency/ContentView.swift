@@ -28,7 +28,7 @@ struct ContentView: View {
     @State private var now = Date()
 
     /// The app's database
-    @ObservedObject var flightLog = FlightLog()
+    @StateObject var flightLog = FlightLog()
 
     var currentRecency: Text {
         if flightLog.isRecencyValid(at: now) {
@@ -52,43 +52,45 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    Section {
-                        HStack {
-                            Spacer()
-                            currentRecency
-                                .font(.largeTitle)
-                            Spacer()
-                        }
-                        if showingValidity {
-                            NavigationLink(destination: RecencyDetail(flightLog: flightLog)) {
-                                nextLimitation
-                                    .font(.headline)
+        GeometryReader { geo in
+            NavigationView {
+                VStack {
+                    Form {
+                        Section {
+                            HStack {
+                                Spacer()
+                                currentRecency
+                                    .font(.largeTitle)
+                                Spacer()
+                            }
+                            if showingValidity {
+                                NavigationLink(destination: RecencyDetail(flightLog: flightLog)) {
+                                    nextLimitation
+                                        .font(.headline)
+                                }
                             }
                         }
-                    }.foregroundColor(showingValidity ? .green : .red)
+                        .foregroundColor(showingValidity ? .green : .red)
+                        .multilineTextAlignment(.center)
+                        Section(header: Text("Latest 3 Activities")) {
+                            if flightLog.data.isEmpty {
+                                Text("Add activities to begin.")
+                            } else {
+                                ForEach(flightLog.data.prefix(3)) { activity in
+                                    ActivityDetail(flightLog: flightLog, movementCellWidth: geo.size.width/20, activity: activity)
+                                }
+                                .onDelete(perform: removeItems)
+                            }
+                        }
+                        Button("Add Activity...") {
+                            activeSheet = .addActivity
+                        }
+                        .font(.headline)
+                    }
 
-                    .multilineTextAlignment(.center)
-                    Section(header: Text("Latest 3 Activities")) {
-                        if flightLog.data.isEmpty {
-                            Text("Add activities to begin.")
-                        } else {
-                            ForEach(flightLog.data.prefix(3)) { activity in
-                                ActivityDetail(flightLog: flightLog, activity: activity)
-                            }
-                            .onDelete(perform: removeItems)
-                        }
-                    }
-                    Button("Add Activity...") {
-                        activeSheet = .addActivity
-                    }
-                    .font(.headline)
                 }
-
+                .navigationBarTitle("Recency Monitor")
             }
-            .navigationBarTitle("Recency Monitor")
         }
         .sheet(item: $activeSheet) { item in
             switch item {

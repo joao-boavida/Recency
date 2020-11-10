@@ -12,27 +12,23 @@ struct ActivityDetail: View {
 
     @ObservedObject var flightLog: FlightLog
 
+    let movementCellWidth: CGFloat
     /// The activity to be displayed
     let activity: FlightActivity
-
-    /// The formatted activity date
-    var dateText: Text {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        let description = dateFormatter.string(from: activity.activityDate)
-        return Text(description)
-    }
 
     var body: some View {
         NavigationLink(destination: EditActivity(flightLog: flightLog, originalActivity: activity)) {
             HStack(alignment: .lastTextBaseline) {
-                dateText
+                Text(activity.formattedDate)
                 Spacer()
-                Image(systemName: "arrow.up.forward.circle")
-                Text("\(activity.takeoffs)")
-                Image(systemName: "arrow.down.right.circle")
-                Text("\(activity.landings)")
+                Group {
+                    Image(systemName: "arrow.up.forward.circle")
+                    Text("\(activity.takeoffs)")
+                    Image(systemName: "arrow.down.right.circle")
+                    Text("\(activity.landings)")
+                }
+                .frame(width: movementCellWidth)
+
             }
             .font(.title3)
         }
@@ -77,27 +73,29 @@ struct RecencyDetail: View {
     }
 
     var body: some View {
-        Form {
-            Section(header: Text("Takeoff and Landing Validity")) {
-                HStack {
-                    Spacer()
-                    takeoffLimitationText
-                        .font(.title3)
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
-                    landingLimitationText
-                        .font(.title3)
-                    Spacer()
-                }
+        GeometryReader { geo in
+            Form {
+                Section(header: Text("Takeoff and Landing Validity")) {
+                    HStack {
+                        Spacer()
+                        takeoffLimitationText
+                            .font(.title3)
+                        Spacer()
+                    }
+                    HStack {
+                        Spacer()
+                        landingLimitationText
+                            .font(.title3)
+                        Spacer()
+                    }
 
-            }
-            Section(header: Text("Activity log")) {
-                ForEach(flightLog.data) { activity in
-                    ActivityDetail(flightLog: flightLog, activity: activity)
                 }
-                .onDelete(perform: removeItems)
+                Section(header: Text("Activity log")) {
+                    ForEach(flightLog.data) { activity in
+                        ActivityDetail(flightLog: flightLog, movementCellWidth: geo.size.width/20, activity: activity)
+                    }
+                    .onDelete(perform: removeItems)
+                }
             }
         }
         .navigationBarTitle("Recency Detail", displayMode: .inline)
@@ -148,8 +146,14 @@ struct RecencyDetail_Previews: PreviewProvider {
         sampleFlightLog.data.append(movement4)
 
         return
-            NavigationView {
-                RecencyDetail(flightLog: sampleFlightLog)
+            Group {
+                NavigationView {
+                    RecencyDetail(flightLog: sampleFlightLog)
+                }
+                .previewDevice("iPhone SE (1st generation)")
+                NavigationView {
+                    RecencyDetail(flightLog: sampleFlightLog)
+                }
             }
     }
 }

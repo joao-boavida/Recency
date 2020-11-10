@@ -14,6 +14,14 @@ struct FlightActivity: Identifiable, Codable, Equatable {
     let takeoffs: Int
     let activityDate: Date
     let landings: Int
+
+    /// The formatted activity date
+    var formattedDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: self.activityDate)
+    }
 }
 
 /// This class is used to store an array of FlightActivity data as well as its storage key on UserDefaults
