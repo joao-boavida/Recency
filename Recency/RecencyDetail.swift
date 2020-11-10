@@ -91,10 +91,14 @@ struct RecencyDetail: View {
 
                 }
                 Section(header: Text("Activity log")) {
-                    ForEach(flightLog.data) { activity in
-                        ActivityDetail(flightLog: flightLog, movementCellWidth: geo.size.width/20, activity: activity)
+                    if flightLog.data.isEmpty {
+                        Text("There are no activities to display.")
+                    } else {
+                        ForEach(flightLog.data) { activity in
+                            ActivityDetail(flightLog: flightLog, movementCellWidth: geo.size.width/20, activity: activity)
+                        }
+                        .onDelete(perform: removeItems)
                     }
-                    .onDelete(perform: removeItems)
                 }
             }
         }
@@ -104,7 +108,7 @@ struct RecencyDetail: View {
     /// Handles activity deletion from the data array
     /// - Parameter offsets: offsets from the line the user selected for deletion
     func removeItems(at offsets: IndexSet) {
-        flightLog.data.remove(atOffsets: offsets)
+        flightLog.removeActivity(at: offsets)
     }
 }
 
@@ -140,20 +144,14 @@ struct RecencyDetail_Previews: PreviewProvider {
 
         let movement4 = FlightActivity(takeoffs: 1, activityDate: hundredDaysAgo, landings: 1)
 
-        sampleFlightLog.data.append(movement1)
-        sampleFlightLog.data.append(movement2)
-        sampleFlightLog.data.append(movement3)
-        sampleFlightLog.data.append(movement4)
+        sampleFlightLog.addActivity(activity: movement1)
+        sampleFlightLog.addActivity(activity: movement2)
+        sampleFlightLog.addActivity(activity: movement3)
+        sampleFlightLog.addActivity(activity: movement4)
 
         return
-            Group {
-                NavigationView {
-                    RecencyDetail(flightLog: sampleFlightLog)
-                }
-                .previewDevice("iPhone SE (1st generation)")
-                NavigationView {
-                    RecencyDetail(flightLog: sampleFlightLog)
-                }
+            NavigationView {
+                RecencyDetail(flightLog: sampleFlightLog)
             }
     }
 }

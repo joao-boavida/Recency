@@ -29,7 +29,7 @@ class FlightLog: ObservableObject {
 
     let flightActivityStorageKey = "FlightActivity"
 
-    @Published var data: [FlightActivity] {
+    @Published private(set) var data: [FlightActivity] {
         didSet {
                 let encoder = JSONEncoder()
                 if let encoded = try? encoder.encode(data) {
@@ -71,6 +71,28 @@ class FlightLog: ObservableObject {
         data.sort {
             $1.activityDate < $0.activityDate
         }
+    }
+
+    /// Errors regarding the database
+    enum DataErrors: Error {
+        case notFound
+    }
+
+    /// removes a given activity from the database, throws an error if not found.
+    /// - Parameter activity: the activity to be removed
+    /// - Throws: an error if the activity was not in the database
+    func removeActivity(activity: FlightActivity) throws {
+        if let index = data.firstIndex(of: activity) {
+            data.remove(at: index)
+        } else {
+            throw DataErrors.notFound
+        }
+    }
+
+    /// removes the activity at a given indexset; for use with the swipe to delete gestures in the foreach rows
+    /// - Parameter offsets: offsets sent by the swipe to delete command
+    func removeActivity(at offsets: IndexSet) {
+        data.remove(atOffsets: offsets)
     }
 
     /// This function checks recency validity (returned as a Bool) at a given date. The validity is extended up to the end of the day of that date in the current calendar.

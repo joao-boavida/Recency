@@ -9,14 +9,28 @@ import SwiftUI
 
 struct EditActivity: View {
 
-    /// the FlightLog which will be created for insertion
+    enum ActiveAlert: Identifiable {
+        case confirmationAlert
+        case errorAlert
+
+        var id: UUID {
+            UUID()
+        }
+    }
+
+    /// the activities database
     @ObservedObject var flightLog: FlightLog
 
+    /// The activity before editing
     let originalActivity: FlightActivity
 
     @State private var landings = 1
     @State private var takeoffs = 1
     @State private var activityDate = Date()
+
+    @State private var activeAlert: ActiveAlert?
+    /*@State private var showingConfirmationAlert = false
+    @State private var showingErrorAlert = false*/
 
     /// used to make the view dismiss itself
     @Environment(\.presentationMode) var presentationMode
@@ -25,6 +39,8 @@ struct EditActivity: View {
 
     let sixMonthsAgo = Calendar.current.date(byAdding: .month, value: -6, to: Date()) ?? .distantPast
     let inOneMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? .distantFuture
+
+    let errorAlert = Alert(title: Text("This activity could not be found"), dismissButton: .default(Text("Okay")))
 
     var body: some View {
         Form {
@@ -48,26 +64,48 @@ struct EditActivity: View {
                 DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
             }
             Section {
+                Button("Delete Activity") {
+                    //showingConfirmationAlert = true
+                    activeAlert = .confirmationAlert
+                }.font(.headline)
+                .foregroundColor(.red)
+            }
+            Section {
                 Button("Save Changes") {
-                    let activity = FlightActivity(id: originalActivity.id, insertionDate: originalActivity.insertionDate, takeoffs: takeoffs, activityDate: activityDate, landings: landings)
+                    let updatedActivity = FlightActivity(id: originalActivity.id, insertionDate: originalActivity.insertionDate, takeoffs: takeoffs, activityDate: activityDate, landings: landings)
 
-                    let indexToRemove = flightLog.data.firstIndex(where: { $0.id == originalActivity.id})
-
-                    if let indexToRemove = indexToRemove {
-                        flightLog.data.remove(at: indexToRemove)
-                        flightLog.addActivity(activity: activity)
+                    do {
+                        try flightLog.removeActivity(activity: originalActivity)
+                        flightLog.addActivity(activity: updatedActivity)
+                        presentationMode.wrappedValue.dismiss()
+                    } catch {
+                        //showingErrorAlert = true
+                        activeAlert = .errorAlert
                     }
-                    presentationMode.wrappedValue.dismiss()
-
                 }
                 .disabled(landings == 0 && takeoffs == 0)
                 .font(.headline)
                 Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
-                }.foregroundColor(.red)
+                }
 
             }
-
+        }
+        .alert(item: $activeAlert) { item in
+            switch item {
+            case .confirmationAlert:
+                return Alert(title: Text("Do you want to permanently delete this activity?"), primaryButton: .default(Text("No")), secondaryButton: .destructive(Text("Delete")) {
+                    do {
+                        try flightLog.removeActivity(activity: originalActivity)
+                        presentationMode.wrappedValue.dismiss()
+                    } catch {
+                        //showingErrorAlert = true // this should never be reached
+                        activeAlert = .errorAlert
+                    }
+                })
+            case .errorAlert:
+                return Alert(title: Text("This activity could not be found"), dismissButton: .default(Text("Okay")))
+            }
         }
         .navigationBarTitle("Edit Activity", displayMode: .inline)
         .onAppear {
@@ -76,6 +114,7 @@ struct EditActivity: View {
             landings = originalActivity.landings
             activityDate = originalActivity.activityDate
         }
+
     }
 
 }

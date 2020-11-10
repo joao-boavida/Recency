@@ -52,6 +52,20 @@ class RecencyTests: XCTestCase {
         XCTAssertEqual(sut.data, correctData)
     }
 
+    func testRemoveActivity1() {
+        let movement1 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 1)
+        sut.addActivity(activity: movement1)
+        try? sut.removeActivity(activity: movement1)
+        XCTAssertTrue(sut.data.isEmpty)
+    }
+
+    func testRemoveActivity2() {
+        let movement1 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 1)
+        sut.addActivity(activity: movement1)
+        sut.removeActivity(at: IndexSet(integer: 0))
+        XCTAssertTrue(sut.data.isEmpty)
+    }
+
     func testIsRecencyValid() {
 
         var components = DateComponents()
