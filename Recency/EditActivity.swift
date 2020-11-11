@@ -9,15 +9,6 @@ import SwiftUI
 
 struct EditActivity: View {
 
-    enum ActiveAlert: Identifiable {
-        case confirmationAlert
-        case errorAlert
-
-        var id: UUID {
-            UUID()
-        }
-    }
-
     /// the activities database
     @ObservedObject var flightLog: FlightLog
 
@@ -28,9 +19,8 @@ struct EditActivity: View {
     @State private var takeoffs = 1
     @State private var activityDate = Date()
 
-    @State private var activeAlert: ActiveAlert?
-    /*@State private var showingConfirmationAlert = false
-    @State private var showingErrorAlert = false*/
+    @State private var showingConfirmationAlert = false
+    @State private var showingErrorAlert = false
 
     /// used to make the view dismiss itself
     @Environment(\.presentationMode) var presentationMode
@@ -65,10 +55,19 @@ struct EditActivity: View {
             }
             Section {
                 Button("Delete Activity") {
-                    //showingConfirmationAlert = true
-                    activeAlert = .confirmationAlert
+                    showingConfirmationAlert = true
                 }.font(.headline)
                 .foregroundColor(.red)
+                .alert(isPresented: $showingConfirmationAlert) {
+                    Alert(title: Text("Do you want to permanently delete this activity?"), primaryButton: .default(Text("No")), secondaryButton: .destructive(Text("Delete")) {
+                        do {
+                            try flightLog.removeActivity(activity: originalActivity)
+                            presentationMode.wrappedValue.dismiss()
+                        } catch {
+                            showingErrorAlert = true // this should never be reached as the original activity is retrieved from the database;
+                        }
+                    })
+                }
             }
             Section {
                 Button("Save Changes") {
@@ -79,32 +78,18 @@ struct EditActivity: View {
                         flightLog.addActivity(activity: updatedActivity)
                         presentationMode.wrappedValue.dismiss()
                     } catch {
-                        //showingErrorAlert = true
-                        activeAlert = .errorAlert
+                        showingErrorAlert = true
                     }
                 }
                 .disabled(landings == 0 && takeoffs == 0)
                 .font(.headline)
+                .alert(isPresented: $showingErrorAlert) {
+                    Alert(title: Text("This activity could not be found"), dismissButton: .default(Text("Okay")))
+                }
                 Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
                 }
 
-            }
-        }
-        .alert(item: $activeAlert) { item in
-            switch item {
-            case .confirmationAlert:
-                return Alert(title: Text("Do you want to permanently delete this activity?"), primaryButton: .default(Text("No")), secondaryButton: .destructive(Text("Delete")) {
-                    do {
-                        try flightLog.removeActivity(activity: originalActivity)
-                        presentationMode.wrappedValue.dismiss()
-                    } catch {
-                        //showingErrorAlert = true // this should never be reached
-                        activeAlert = .errorAlert
-                    }
-                })
-            case .errorAlert:
-                return Alert(title: Text("This activity could not be found"), dismissButton: .default(Text("Okay")))
             }
         }
         .navigationBarTitle("Edit Activity", displayMode: .inline)
