@@ -8,7 +8,7 @@
 import Foundation
 
 /// The main data structure of the app, bundling one activity that may contain take-offs, landings or both as well as the associated date. insertionDate not used at the moment.
-struct FlightActivity: Identifiable, Codable, Equatable{
+struct FlightActivity: Identifiable, Codable, Equatable {
     var id = UUID()
     var insertionDate = Date()
     let takeoffs: Int
@@ -42,6 +42,58 @@ class FlightLog: ObservableObject {
                 }
             }
         }
+
+    /// Checks the recency validity limit date of the current data structure
+    /// - Returns: validity limit, distant past if unable to determine
+    var recencyValidity: Date {
+        min(landingRecencyValidity, takeoffRecencyValidity)
+    }
+
+    /// Checks the recency validity date of the takeoffs in the current data structure
+    /// - Returns: takeoff validity limit, distant past if unable to determine
+    var takeoffRecencyValidity: Date {
+
+        //sort the flight log by takeoff dates beginning with the most recent one
+        let sortedFlightLog = data.sorted {
+            $0.activityDate > $1.activityDate
+        }
+
+        var takeOffCount = 0
+        var limitingTakeoffDate = Date()
+
+        for movement in sortedFlightLog {
+            takeOffCount += movement.takeoffs
+            limitingTakeoffDate = movement.activityDate
+
+            if takeOffCount > 2 {
+                return Calendar.current.date(byAdding: .day, value: 90, to: limitingTakeoffDate)!
+            }
+        }
+
+        return Date.distantPast
+    }
+
+    /// Checks the landing validity limit date of the current data structure
+    /// - Returns: landing validity limit, distant past if unable to determine
+    var landingRecencyValidity: Date {
+        let sortedFlightLog = data.sorted {
+            $0.activityDate > $1.activityDate
+        }
+
+        var landingCount = 0
+        var limitingLandingDate = Date()
+
+        for movement in sortedFlightLog {
+            landingCount += movement.landings
+            limitingLandingDate = movement.activityDate
+
+            if landingCount > 2 {
+                return Calendar.current.date(byAdding: .day, value: 90, to: limitingLandingDate)!
+            }
+        }
+
+        return Date.distantPast
+    }
 
     /// Custom initialiser to get data from user defaults
     /// - Parameter emptyLog: if true an empty log will be created, for previewing and testing
@@ -109,64 +161,7 @@ class FlightLog: ObservableObject {
     /// - Parameter date: date to be checked
     /// - Returns: validity as boolean
     func isRecencyValid(at date: Date) -> Bool {
-        checkRecency() > date || Calendar.current.isDate(checkRecency(), inSameDayAs: date)
+        recencyValidity > date || Calendar.current.isDate(recencyValidity, inSameDayAs: date)
     }
 
-    /// Checks the recency validity limit date of the current data structure
-    /// - Returns: validity limit, distant past if unable to determine
-    func checkRecency() -> Date {
-
-        let takeoffRecencyDate = checkTakeoffRecency()
-
-        let landingRecencyDate = checkLandingRecency()
-
-        return min(landingRecencyDate, takeoffRecencyDate)
-
-    }
-
-    /// Checks the recency validity date of the takeoffs in the current data structure
-    /// - Returns: takeoff validity limit, distant past if unable to determine
-    func checkTakeoffRecency() -> Date {
-
-        //sort the flight log by takeoff dates beginning with the most recent one
-        let sortedFlightLog = data.sorted {
-            $0.activityDate > $1.activityDate
-        }
-
-        var takeOffCount = 0
-        var limitingTakeoffDate = Date()
-
-        for movement in sortedFlightLog {
-            takeOffCount += movement.takeoffs
-            limitingTakeoffDate = movement.activityDate
-
-            if takeOffCount > 2 {
-                return Calendar.current.date(byAdding: .day, value: 90, to: limitingTakeoffDate)!
-            }
-        }
-
-        return Date.distantPast
-    }
-
-    /// Checks the landing validity limit date of the current data structure
-    /// - Returns: landing validity limit, distant past if unable to determine
-    func checkLandingRecency() -> Date {
-        let sortedFlightLog = data.sorted {
-            $0.activityDate > $1.activityDate
-        }
-
-        var landingCount = 0
-        var limitingLandingDate = Date()
-
-        for movement in sortedFlightLog {
-            landingCount += movement.landings
-            limitingLandingDate = movement.activityDate
-
-            if landingCount > 2 {
-                return Calendar.current.date(byAdding: .day, value: 90, to: limitingLandingDate)!
-            }
-        }
-
-        return Date.distantPast
-    }
 }

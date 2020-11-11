@@ -43,7 +43,7 @@ struct ContentView: View {
     }
 
     var nextLimitation: Text {
-        let recency = flightLog.checkRecency()
+        let recency = flightLog.recencyValidity
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none

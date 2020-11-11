@@ -89,7 +89,7 @@ class RecencyTests: XCTestCase {
 
     }
 
-    func testCheckRecency() {
+    func testRecencyValidity() {
 
         //recency limited by landings
         let movement1 = FlightActivity(takeoffs: 3, activityDate: referenceDate, landings: 1)
@@ -101,7 +101,7 @@ class RecencyTests: XCTestCase {
 
         let correctRecency = Calendar.current.date(byAdding: .day, value: 90, to: threeDaysAgo)
 
-        XCTAssertEqual(sut.checkRecency(), correctRecency)
+        XCTAssertEqual(sut.recencyValidity, correctRecency)
 
         //recency limited by takeoffs
         sut.clearLog()
@@ -112,7 +112,7 @@ class RecencyTests: XCTestCase {
         sut.addActivity(activity: movement3)
         sut.addActivity(activity: movement4)
 
-        XCTAssertEqual(sut.checkRecency(), correctRecency)
+        XCTAssertEqual(sut.recencyValidity, correctRecency)
 
     }
 
@@ -124,7 +124,7 @@ class RecencyTests: XCTestCase {
         sut.addActivity(activity: movement2)
         sut.addActivity(activity: movement1)
 
-        XCTAssertEqual(sut.checkTakeoffRecency(), .distantPast)
+        XCTAssertEqual(sut.takeoffRecencyValidity, .distantPast)
 
         sut.clearLog()
         //sut.data = []
@@ -135,7 +135,7 @@ class RecencyTests: XCTestCase {
 
         let correctRecency = Calendar.current.date(byAdding: .day, value: 90, to: referenceDate)
 
-        XCTAssertEqual(sut.checkTakeoffRecency(), correctRecency)
+        XCTAssertEqual(sut.takeoffRecencyValidity, correctRecency)
 
     }
 
@@ -147,7 +147,7 @@ class RecencyTests: XCTestCase {
         sut.addActivity(activity: movement2)
         sut.addActivity(activity: movement1)
 
-        XCTAssertEqual(sut.checkLandingRecency(), .distantPast)
+        XCTAssertEqual(sut.landingRecencyValidity, .distantPast)
 
         sut.clearLog()
         //sut.data = []
@@ -158,7 +158,7 @@ class RecencyTests: XCTestCase {
 
         let correctRecency = Calendar.current.date(byAdding: .day, value: 90, to: referenceDate)
 
-        XCTAssertEqual(sut.checkLandingRecency(), correctRecency)
+        XCTAssertEqual(sut.landingRecencyValidity, correctRecency)
     }
 
     func testPerformanceExample() throws {

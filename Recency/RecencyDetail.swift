@@ -40,19 +40,12 @@ struct RecencyDetail: View {
 
     @ObservedObject var flightLog: FlightLog
 
-    var takeOffLimitation: Date {
-        flightLog.checkTakeoffRecency()
-    }
-    var landingLimitation: Date {
-        flightLog.checkLandingRecency()
-    }
-
     var takeoffLimitationText: Text {
-        if takeOffLimitation >= Date() {
+        if flightLog.takeoffRecencyValidity >= Date() {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
-            let description = dateFormatter.string(from: takeOffLimitation)
+            let description = dateFormatter.string(from: flightLog.takeoffRecencyValidity)
             return Text("Takeoffs: \(description)")
         } else {
             return Text("Takeoffs not valid")
@@ -61,11 +54,11 @@ struct RecencyDetail: View {
 
     var landingLimitationText: Text {
 
-        if landingLimitation >= Date() {
+        if flightLog.landingRecencyValidity >= Date() {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
-            let description = dateFormatter.string(from: landingLimitation)
+            let description = dateFormatter.string(from: flightLog.landingRecencyValidity)
             return Text("Landings: \(description)")
         } else {
             return Text("Landings not valid")
