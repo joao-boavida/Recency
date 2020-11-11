@@ -36,6 +36,7 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
+                    .accessibility(identifier: "takeOffPicker")
                     Text("Landings")
                         .font(.headline)
                     Picker("Take-offs", selection: $landings) {
@@ -43,9 +44,11 @@ struct AddActivity: View {
                             Text("\(pickerLabels[$0])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
+                    .accessibility(identifier: "landingPicker")
                 }
                 Section {
                     DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
+                        .accessibility(identifier: "datePicker")
                 }
                 Section {
                     Button("Done") {
@@ -57,9 +60,12 @@ struct AddActivity: View {
                     }
                     .disabled(landings == 0 && takeoffs == 0)
                     .font(.headline)
+                    .accessibility(identifier: "doneButton")
+
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
                     }.foregroundColor(.red)
+                    .accessibility(identifier: "cancelButton")
 
                 }
 

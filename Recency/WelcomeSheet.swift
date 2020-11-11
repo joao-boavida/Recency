@@ -39,6 +39,7 @@ Fly safe!
                 }
                 .font(.title)
                 .padding()
+                .accessibility(identifier: "getStartedButton")
                 Spacer()
             }
             .navigationBarHidden(true)

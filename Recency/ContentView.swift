@@ -75,6 +75,7 @@ struct ContentView: View {
                         Section(header: Text("Latest 3 Activities")) {
                             if flightLog.data.isEmpty {
                                 Text("Add activities to begin.")
+                                    .accessibility(identifier: "addActivitiesToBeginText")
                             } else {
                                 ForEach(flightLog.data.prefix(3)) { activity in
                                     ActivityDetail(flightLog: flightLog, movementCellWidth: geo.size.width/20, activity: activity)
@@ -86,6 +87,7 @@ struct ContentView: View {
                             activeSheet = .addActivity
                         }
                         .font(.headline)
+                        .accessibility(identifier: "addActivityButton")
                     }
 
                 }

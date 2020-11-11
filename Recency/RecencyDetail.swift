@@ -31,7 +31,7 @@ struct ActivityDetail: View {
 
             }
             .font(.title3)
-        }
+        }.accessibility(identifier: activity.shortDescription)
     }
 }
 

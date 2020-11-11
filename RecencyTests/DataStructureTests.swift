@@ -104,7 +104,8 @@ class RecencyTests: XCTestCase {
         XCTAssertEqual(sut.checkRecency(), correctRecency)
 
         //recency limited by takeoffs
-        sut.data = []
+        sut.clearLog()
+        //sut.data = []
         let movement3 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 3)
         let movement4 = FlightActivity(takeoffs: 3, activityDate: threeDaysAgo, landings: 1)
 
@@ -125,7 +126,8 @@ class RecencyTests: XCTestCase {
 
         XCTAssertEqual(sut.checkTakeoffRecency(), .distantPast)
 
-        sut.data = []
+        sut.clearLog()
+        //sut.data = []
 
         let movement3 = FlightActivity(takeoffs: 3, activityDate: referenceDate, landings: 1)
 
@@ -147,7 +149,8 @@ class RecencyTests: XCTestCase {
 
         XCTAssertEqual(sut.checkLandingRecency(), .distantPast)
 
-        sut.data = []
+        sut.clearLog()
+        //sut.data = []
 
         let movement3 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 3)
 

@@ -8,7 +8,7 @@
 import Foundation
 
 /// The main data structure of the app, bundling one activity that may contain take-offs, landings or both as well as the associated date. insertionDate not used at the moment.
-struct FlightActivity: Identifiable, Codable, Equatable {
+struct FlightActivity: Identifiable, Codable, Equatable{
     var id = UUID()
     var insertionDate = Date()
     let takeoffs: Int
@@ -21,6 +21,11 @@ struct FlightActivity: Identifiable, Codable, Equatable {
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
         return dateFormatter.string(from: self.activityDate)
+    }
+
+    /// Used for UI Testing
+    var shortDescription: String {
+        "takeoffs: \(takeoffs) landings: \(landings)"
     }
 }
 
@@ -93,6 +98,11 @@ class FlightLog: ObservableObject {
     /// - Parameter offsets: offsets sent by the swipe to delete command
     func removeActivity(at offsets: IndexSet) {
         data.remove(atOffsets: offsets)
+    }
+
+    /// Used by the internal testing suite to clear the activity log
+    internal func clearLog() {
+        data = []
     }
 
     /// This function checks recency validity (returned as a Bool) at a given date. The validity is extended up to the end of the day of that date in the current calendar.
