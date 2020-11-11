@@ -68,6 +68,7 @@ struct EditActivity: View {
                         }
                     })
                 }
+                .accessibility(identifier: "deleteActivityButton")
             }
             Section {
                 Button("Save Changes") {
@@ -86,9 +87,11 @@ struct EditActivity: View {
                 .alert(isPresented: $showingErrorAlert) {
                     Alert(title: Text("This activity could not be found"), dismissButton: .default(Text("Okay")))
                 }
+                .accessibility(identifier: "saveChangesButton")
                 Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
                 }
+                .accessibility(identifier: "cancelButton")
 
             }
         }

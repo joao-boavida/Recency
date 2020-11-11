@@ -82,18 +82,30 @@ class RecencyUITests: XCTestCase {
         XCTAssertFalse(activityLine.exists)
     }
 
+    func testDeleteActivity() throws {
+        let getStartedButton = app.buttons["getStartedButton"]
+        getStartedButton.tap()
+        let addActivityButton = app.buttons["addActivityButton"]
+        addActivityButton.tap()
+        let doneButton = app.buttons["doneButton"]
+        doneButton.tap()
+        let activityLine = app.buttons["takeoffs: 1 landings: 1"]
+        activityLine.tap()
+        // continue here
+    }
+
     // missing UI Tests:
     // - Delete activity
     // - Modify activity
     // 
     // - swipe to delete on detail screen
 
-    func testLaunchPerformance() throws {
+    /*func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }
         }
-    }
+    }*/
 }
