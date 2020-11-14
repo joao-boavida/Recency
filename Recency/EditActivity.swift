@@ -9,6 +9,15 @@ import SwiftUI
 
 struct EditActivity: View {
 
+
+    let alertButton = Alert.Button.default(Text("Delete"), action: {
+        //action here
+    })
+
+    let testButton = Button("test", action: {
+        //action here
+    }).accessibility(identifier: "testButton")
+
     /// the activities database
     @ObservedObject var flightLog: FlightLog
 
@@ -42,6 +51,7 @@ struct EditActivity: View {
                         Text("\(pickerLabels[$0])")
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+                .accessibility(identifier: "takeoffsSegmentedPicker")
                 Text("Landings")
                     .font(.headline)
                 Picker("Take-offs", selection: $landings) {
@@ -49,6 +59,7 @@ struct EditActivity: View {
                         Text("\(pickerLabels[$0])")
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+                .accessibility(identifier: "landingsSegmentedPicker")
             }
             Section {
                 DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
@@ -59,7 +70,7 @@ struct EditActivity: View {
                 }.font(.headline)
                 .foregroundColor(.red)
                 .alert(isPresented: $showingConfirmationAlert) {
-                    Alert(title: Text("Do you want to permanently delete this activity?"), primaryButton: .default(Text("No")), secondaryButton: .destructive(Text("Delete")) {
+                    Alert(title: Text("Do you want to permanently delete this activity?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")) {
                         do {
                             try flightLog.removeActivity(activity: originalActivity)
                             presentationMode.wrappedValue.dismiss()

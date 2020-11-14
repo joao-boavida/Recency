@@ -91,13 +91,24 @@ class RecencyUITests: XCTestCase {
         doneButton.tap()
         let activityLine = app.buttons["takeoffs: 1 landings: 1"]
         activityLine.tap()
-        // continue here
+
+        let deleteButton = app.buttons["deleteActivityButton"]
+        XCTAssert(deleteButton.exists)
+        deleteButton.tap()
+
+        let confirmDeleteButton = app.alerts.buttons["Delete"]
+        XCTAssert(confirmDeleteButton.exists)
+        confirmDeleteButton.tap()
+
+        // the following text only appears if the activity list is empty
+        let emptyLog = app.staticTexts["addActivitiesToBeginText"]
+        XCTAssert(emptyLog.exists)
+
     }
 
     // missing UI Tests:
-    // - Delete activity
+    //
     // - Modify activity
-    // 
     // - swipe to delete on detail screen
 
     /*func testLaunchPerformance() throws {
