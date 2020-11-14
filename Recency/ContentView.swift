@@ -30,25 +30,8 @@ struct ContentView: View {
     /// The app's database
     @StateObject var flightLog = FlightLog()
 
-    var currentRecency: Text {
-        if flightLog.isRecencyValid(at: now) {
-            return Text("Recency OK")
-        } else {
-            return Text("Recency Expired")
-        }
-    }
-
     var showingValidity: Bool {
         flightLog.isRecencyValid(at: now)
-    }
-
-    var nextLimitation: Text {
-        let recency = flightLog.recencyValidity
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        let description = dateFormatter.string(from: recency)
-        return Text("Valid until \(description)")
     }
 
     var body: some View {
@@ -59,13 +42,13 @@ struct ContentView: View {
                         Section {
                             HStack {
                                 Spacer()
-                                currentRecency
+                                Text(flightLog.formatRecencyStatus(at: now))
                                     .font(.largeTitle)
                                 Spacer()
                             }
                             if showingValidity {
                                 NavigationLink(destination: RecencyDetail(flightLog: flightLog)) {
-                                    nextLimitation
+                                    Text(flightLog.formattedNextLimitation)
                                         .font(.headline)
                                 }
                             }
