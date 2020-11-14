@@ -9,15 +9,6 @@ import SwiftUI
 
 struct EditActivity: View {
 
-
-    let alertButton = Alert.Button.default(Text("Delete"), action: {
-        //action here
-    })
-
-    let testButton = Button("test", action: {
-        //action here
-    }).accessibility(identifier: "testButton")
-
     /// the activities database
     @ObservedObject var flightLog: FlightLog
 
