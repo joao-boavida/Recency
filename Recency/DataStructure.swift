@@ -164,4 +164,18 @@ class FlightLog: ObservableObject {
         recencyValidity > date || Calendar.current.isDate(recencyValidity, inSameDayAs: date)
     }
 
+    /// This function checks takeoff recency validity (returned as a Bool) at a given date. The validity is extended up to the end of the day of that date in the current calendar.
+    /// - Parameter date: date to be checked
+    /// - Returns: validity as boolean
+    func areTakeoffsValid(at date: Date) -> Bool {
+        takeoffRecencyValidity > date || Calendar.current.isDate(takeoffRecencyValidity, inSameDayAs: date)
+    }
+
+    /// This function checks landing recency validity (returned as a Bool) at a given date. The validity is extended up to the end of the day of that date in the current calendar.
+    /// - Parameter date: date to be checked
+    /// - Returns: validity as boolean
+    func areLandingsValid(at date: Date) -> Bool {
+        landingRecencyValidity > date || Calendar.current.isDate(landingRecencyValidity, inSameDayAs: date)
+    }
+
 }

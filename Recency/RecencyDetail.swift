@@ -7,6 +7,54 @@
 
 import SwiftUI
 
+struct DetailValidityView: View {
+
+    let takeoffsValidityDate: Date
+    let landingsValidityDate: Date
+
+    let takeoffValidityStatus: Bool
+    let landingValidityStatus: Bool
+
+    var validImage: some View {
+        Image(systemName: "checkmark.circle.fill")
+            .font(.system(size: 40))
+    }
+
+    var invalidImage: some View {
+        Image(systemName: "xmark.octagon.fill")
+            .font(.system(size: 40))
+    }
+
+    var body: some View {
+        HStack {
+            Spacer()
+            VStack {
+                takeoffValidityStatus ? AnyView(validImage) : AnyView(invalidImage)
+                Group {
+                    Text("Takeoffs")
+                    takeoffValidityStatus ? Text(formatDate(date: takeoffsValidityDate)) : Text("Expired")
+                }.font(.title2)
+            }.foregroundColor(takeoffValidityStatus ? .green : .red)
+            Spacer(minLength: 70)
+            VStack {
+                landingValidityStatus ? AnyView(validImage) : AnyView(invalidImage)
+                Group {
+                    Text("Landings")
+                    landingValidityStatus ? Text(formatDate(date: landingsValidityDate)) : Text("Expired")
+                }.font(.title2)
+            }.foregroundColor(landingValidityStatus ? .green : .red)
+            Spacer()
+        }
+    }
+
+    func formatDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: date)
+    }
+}
+
 /// This subview is a line of the activity log list
 struct ActivityDetail: View {
 
@@ -142,9 +190,29 @@ struct RecencyDetail_Previews: PreviewProvider {
         sampleFlightLog.addActivity(activity: movement3)
         sampleFlightLog.addActivity(activity: movement4)
 
-        return
+        /*return
             NavigationView {
                 RecencyDetail(flightLog: sampleFlightLog)
+            }*/
+
+        return
+            Group {
+                NavigationView {
+                    Form {
+                        Section(header: Text("SECTION TITLE")) {
+                            DetailValidityView(takeoffsValidityDate: Date.distantPast, landingsValidityDate: Date.distantFuture, takeoffValidityStatus: false, landingValidityStatus: true)
+                        }
+                    }
+                }
+                NavigationView {
+                    Form {
+                        Section(header: Text("SECTION TITLE")) {
+                            DetailValidityView(takeoffsValidityDate: Date.distantPast, landingsValidityDate: Date.distantFuture, takeoffValidityStatus: false, landingValidityStatus: true)
+                        }
+                    }
+                }
+                .preferredColorScheme(.dark)
             }
     }
+
 }
