@@ -18,6 +18,33 @@ enum ActiveSheet: Identifiable {
     }
 }
 
+struct RecencyLine: View {
+
+    var now: Date = Date()
+
+    @ObservedObject var flightLog: FlightLog
+
+    var body: some View {
+        Section {
+            HStack {
+                Spacer()
+                Text(flightLog.formatRecencyStatus(at: now))
+                    .font(.largeTitle)
+                Spacer()
+            }
+            if flightLog.isRecencyValid(at: now) {
+                NavigationLink(destination: RecencyDetail(flightLog: flightLog)) {
+                    Text(flightLog.formattedNextLimitation)
+                        .font(.headline)
+                }
+            }
+        }
+        .foregroundColor(flightLog.isRecencyValid(at: now) ? .green : .red)
+        .multilineTextAlignment(.center)
+    }
+
+}
+
 /// This is the app's main view
 struct ContentView: View {
 
@@ -107,7 +134,14 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environment(\.colorScheme, .dark)
+        Group {
+            //ContentView()
+            Form {
+                RecencyLine(now: Date(), flightLog: FlightLog())
+            }
+            Form {
+                RecencyLine(now: Date(), flightLog: FlightLog(emptyLog: true))
+            }
+        }.environment(\.colorScheme, .dark)
     }
 }
