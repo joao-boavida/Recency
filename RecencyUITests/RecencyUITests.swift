@@ -100,9 +100,8 @@ class RecencyUITests: XCTestCase {
         XCTAssert(confirmDeleteButton.exists)
         confirmDeleteButton.tap()
 
-        // the following text only appears if the activity list is empty
-        let emptyLog = app.staticTexts["addActivitiesToBeginText"]
-        XCTAssert(emptyLog.exists)
+        let nonExistingActivityLine = app.buttons["takeoffs: 1 landings: 1"]
+        XCTAssertFalse(nonExistingActivityLine.exists)
 
     }
 

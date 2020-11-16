@@ -43,15 +43,6 @@ class FlightLog: ObservableObject {
             }
         }
 
-    /// A string showing the next recency limitation in short date format
-    var formattedNextLimitation: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        let description = dateFormatter.string(from: recencyValidity)
-        return "Valid until \(description)"
-    }
-
     /// Checks the recency validity limit date of the current data structure
     /// - Returns: validity limit, distant past if unable to determine
     var recencyValidity: Date {
@@ -128,17 +119,6 @@ class FlightLog: ObservableObject {
         }
         /*self.firstRun = true*/
         self.data = []
-    }
-
-    /// Formats recency status at a given date
-    /// - Parameter date: the date to be checked
-    /// - Returns: a string with either "Recency OK" or "Recency Expired"
-    func formatRecencyStatus(at date: Date) -> String {
-        if isRecencyValid(at: date) {
-            return "Recency OK"
-        } else {
-            return "Recency Expired"
-        }
     }
 
     /// This function adds an activity to the log

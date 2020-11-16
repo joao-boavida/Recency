@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0311DBA72562CFA400F34171 /* ValidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0311DBA62562CFA300F34171 /* ValidityView.swift */; };
 		036300462544B07B00B90A97 /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036300452544B07B00B90A97 /* EditActivity.swift */; };
 		039134622535B0F20009DC32 /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039134612535B0F20009DC32 /* DataStructure.swift */; };
 		039134672535BE910009DC32 /* RecencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039134662535BE910009DC32 /* RecencyDetail.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0311DBA62562CFA300F34171 /* ValidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityView.swift; sourceTree = "<group>"; };
 		036300452544B07B00B90A97 /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
 		039134612535B0F20009DC32 /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
 		039134662535BE910009DC32 /* RecencyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyDetail.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				03AEC7AC253447AE00EB75E1 /* RecencyApp.swift */,
 				03AEC7AE253447AE00EB75E1 /* ContentView.swift */,
+				0311DBA62562CFA300F34171 /* ValidityView.swift */,
 				039134662535BE910009DC32 /* RecencyDetail.swift */,
 				036300452544B07B00B90A97 /* EditActivity.swift */,
 				039134612535B0F20009DC32 /* DataStructure.swift */,
@@ -410,6 +413,7 @@
 				03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */,
 				036300462544B07B00B90A97 /* EditActivity.swift in Sources */,
 				03BDD5B9253B6AF000A8652D /* WelcomeSheet.swift in Sources */,
+				0311DBA72562CFA400F34171 /* ValidityView.swift in Sources */,
 				03AEC7AD253447AE00EB75E1 /* RecencyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
