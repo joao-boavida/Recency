@@ -117,7 +117,8 @@ struct RecencyDetail: View {
         GeometryReader { geo in
             Form {
                 Section(header: Text("Takeoff and Landing Validity")) {
-                    HStack {
+                    DetailValidityView(takeoffsValidityDate: flightLog.takeoffRecencyValidity, landingsValidityDate: flightLog.landingRecencyValidity, takeoffValidityStatus: flightLog.areTakeoffsValid(at: Date()), landingValidityStatus: flightLog.areLandingsValid(at: Date()))
+                    /*HStack {
                         Spacer()
                         takeoffLimitationText
                             .font(.title3)
@@ -128,7 +129,7 @@ struct RecencyDetail: View {
                         landingLimitationText
                             .font(.title3)
                         Spacer()
-                    }
+                    }*/
 
                 }
                 Section(header: Text("Activity log")) {
