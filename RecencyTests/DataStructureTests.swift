@@ -22,6 +22,11 @@ class RecencyTests: XCTestCase {
         components.year = 2020
         components.month = 10
         components.day = 13
+        components.hour = 12
+        components.minute = 0
+        components.second = 0
+        components.nanosecond = 0
+        components.timeZone = TimeZone(identifier: "UTC")
         //components.calendar = .current
         referenceDate = Calendar.current.date(from: components)!
 
@@ -37,12 +42,14 @@ class RecencyTests: XCTestCase {
     func testAddActivity() {
         // Append 2 activities that then get sorted. assert the correct sorting.
 
-        let movement1 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 1)
+        //let movement1 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 1)
+        let movement1 = FlightActivity(id: UUID(), insertionDate: referenceDate, takeoffs: 1, activityDate: referenceDate, landings: 1)
 
         // 3 days ago
         let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: referenceDate)!
 
-        let movement2 = FlightActivity(takeoffs: 1, activityDate: threeDaysAgo, landings: 1)
+        //let movement2 = FlightActivity(takeoffs: 1, activityDate: threeDaysAgo, landings: 1)
+        let movement2 = FlightActivity(id: UUID(), insertionDate: threeDaysAgo, takeoffs: 1, activityDate: threeDaysAgo, landings: 1)
 
         sut.addActivity(activity: movement2)
         sut.addActivity(activity: movement1)

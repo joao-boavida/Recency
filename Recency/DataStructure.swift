@@ -36,17 +36,39 @@ class FlightLog: ObservableObject {
 
     @Published private(set) var data: [FlightActivity] {
         didSet {
-                let encoder = JSONEncoder()
-                if let encoded = try? encoder.encode(data) {
-                    UserDefaults.standard.set(encoded, forKey: flightActivityStorageKey)
-                }
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(data) {
+                UserDefaults.standard.set(encoded, forKey: flightActivityStorageKey)
             }
+            recencyValidity = min(landingRecencyValidity, takeoffRecencyValidity)
         }
+    }
 
     /// Checks the recency validity limit date of the current data structure
     /// - Returns: validity limit, distant past if unable to determine
     var recencyValidity: Date {
-        min(landingRecencyValidity, takeoffRecencyValidity)
+        get {
+            min(landingRecencyValidity, takeoffRecencyValidity)
+        }
+        set {
+            if recencyValidity != newValue {
+                //recencyValidity is about to change
+                //if notifiations are enabled, update them
+                // TO BE CHANGED: Use own variable to see if notifications are enabled instead of apples to avoid triggering an undesired notification request alert
+                /*
+                if NotificationsManager.requestPermission() {
+                    let calendar = Calendar.current
+                    var components = calendar.dateComponents([.year, .month, .day], from: newValue)
+                    components.hour = 12
+                    NotificationsManager.scheduleNotificationAtDate(title: "Recency Expiring", subtitle: "Your recency appears to expire today", dateComponents: components)
+                    let oneWeekToGo = Calendar.current.date(byAdding: .day, value: -7, to: newValue) ?? .distantPast
+                    var oneWeekToGoComponents = calendar.dateComponents([.year, .month, .day], from: oneWeekToGo)
+                    oneWeekToGoComponents.hour = 12
+                    NotificationsManager.scheduleNotificationAtDate(title: "Recency Expiring", subtitle: "Your recency expires in less than one week", dateComponents: oneWeekToGoComponents)
+                }*/
+            }
+        }
+
     }
 
     /// Checks the recency validity date of the takeoffs in the current data structure
@@ -117,14 +139,30 @@ class FlightLog: ObservableObject {
                 return
             }
         }
-        /*self.firstRun = true*/
         self.data = []
     }
 
     /// This function adds an activity to the log
     /// - Parameter activity: the activity to be added
     func addActivity(activity: FlightActivity) {
-        data.append(activity)
+
+        // correct the time to 12:00 UTC to avoid time zone problems
+
+        let calendar = Calendar.current
+        var components = calendar.dateComponents(in: .current, from: activity.activityDate)
+
+        components.hour = 12
+        components.minute = 0
+        components.second = 0
+        components.nanosecond = 0
+        components.timeZone = TimeZone(identifier: "UTC")
+
+        // the date should never be invalid; however if it is then the system defaults to the insertiondate
+        let correctedDate = components.date ?? activity.activityDate
+
+        let correctedActivity = FlightActivity(id: activity.id, insertionDate: activity.insertionDate, takeoffs: activity.takeoffs, activityDate: correctedDate, landings: activity.landings)
+
+        data.append(correctedActivity)
         data.sort {
             $1.activityDate < $0.activityDate
         }
