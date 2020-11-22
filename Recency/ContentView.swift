@@ -59,36 +59,20 @@ struct ContentView: View {
                         #if DEBUG
                         // for development purposes
                         Section(header: Text("Development Only")) {
+                            /*
                             Button("Request Notification Permission") {
                                 NotificationsManager.requestPermission()
                             }
                             Button("Schedule Test Notifications") {
 
-                                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                                NotificationsManager.removePendingNotifications()
 
-                                let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date())
-                                let components = Calendar.current.dateComponents(in: .current, from: tomorrow!)
-
-                                var simplifiedComponents = DateComponents()
-                                simplifiedComponents.year = components.year
-                                simplifiedComponents.month = components.month
-                                simplifiedComponents.day = components.day
-                                simplifiedComponents.hour = 12
-
-                                NotificationsManager.scheduleNotificationAtDate(title: "Test", subtitle: "Test", date: simplifiedComponents.date!)
-/*
-                                var components2 = DateComponents()
-                                components2.year = 2020
-                                components2.month = 11
-                                components2.day = 22
-                                components2.hour = 15
-                                components2.minute = 0
-                                NotificationsManager.scheduleNotificationAtDate(title: "Test", subtitle: "Test", dateComponents: components2)*/
+                                NotificationsManager.testStandardNotifications()
                             }
                             Button("Schedule Notification From Recency") {
-                                NotificationsManager.removeAll()
+                                NotificationsManager.removePendingNotifications()
                                 NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: flightLog.recencyValidity)
-                            }
+                            }*/
                             Button("Print Pending Notifications") {
                                 NotificationsManager.printPendingNotifications()
                             }

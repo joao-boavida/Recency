@@ -55,8 +55,35 @@ struct NotificationsManager {
 
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
-        UNUserNotificationCenter.current().add(request)
+        center.add(request)
+
     }
+
+    static func scheduleNotificationsFromRecencyDate(recencyDate: Date) {
+
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
+            if success {
+                //asynchronous as the system may have to wait for user answer
+                //in xcode sim this fails to work the first time the app requests user authorisation, however it works fine on an actual iPhone. In the simulator if a debug breakpoint is set somewhere in this closure it also works fine, so it should be an xcode problem.
+
+                removePendingNotifications()
+                scheduleNotificationAtDate(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, date: recencyDate)
+                if let reminderDate = Calendar.current.date(byAdding: .day, value: -14, to: recencyDate) {
+                    scheduleNotificationAtDate(title: warningNotificationTitle, subtitle: warningNotificationSubtitle, date: reminderDate)
+                }
+
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+
+    }
+
+    static func removePendingNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
+    #if DEBUG
 
     static func scheduleNotificationInSeconds(title: String, subtitle: String, interval: Int) {
         let content = UNMutableNotificationContent()
@@ -74,30 +101,22 @@ struct NotificationsManager {
 
     }
 
-    static func scheduleNotificationsFromRecencyDate(recencyDate: Date) {
-
-        scheduleNotificationAtDate(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, date: recencyDate)
-
-        let reminderDate = Calendar.current.date(byAdding: .day, value: -14, to: recencyDate)
-
-        if let reminderDate = reminderDate {
-            scheduleNotificationAtDate(title: warningNotificationTitle, subtitle: warningNotificationSubtitle, date: reminderDate)
-        }
-
-    }
-
-    static func removeAll() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-    }
-
-    #if DEBUG
-
     static func printPendingNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            for request in requests {
-                print(request)
+            if requests.isEmpty {
+                print("No pending notifications.")
+            } else {
+                for request in requests {
+                    print(request)
+                }
+                print("Total scheduled notifications: \(requests.count)")
             }
         }
+    }
+
+    static func testStandardNotifications() {
+        scheduleNotificationInSeconds(title: warningNotificationTitle, subtitle: warningNotificationSubtitle, interval: 5)
+        scheduleNotificationInSeconds(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, interval: 10)
     }
 
     #endif

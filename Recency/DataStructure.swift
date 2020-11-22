@@ -40,35 +40,14 @@ class FlightLog: ObservableObject {
             if let encoded = try? encoder.encode(data) {
                 UserDefaults.standard.set(encoded, forKey: flightActivityStorageKey)
             }
-            recencyValidity = min(landingRecencyValidity, takeoffRecencyValidity)
+
         }
     }
 
     /// Checks the recency validity limit date of the current data structure
     /// - Returns: validity limit, distant past if unable to determine
     var recencyValidity: Date {
-        get {
-            min(landingRecencyValidity, takeoffRecencyValidity)
-        }
-        set {
-            if recencyValidity != newValue {
-                //recencyValidity is about to change
-                //if notifiations are enabled, update them
-                // TO BE CHANGED: Use own variable to see if notifications are enabled instead of apples to avoid triggering an undesired notification request alert
-                /*
-                if NotificationsManager.requestPermission() {
-                    let calendar = Calendar.current
-                    var components = calendar.dateComponents([.year, .month, .day], from: newValue)
-                    components.hour = 12
-                    NotificationsManager.scheduleNotificationAtDate(title: "Recency Expiring", subtitle: "Your recency appears to expire today", dateComponents: components)
-                    let oneWeekToGo = Calendar.current.date(byAdding: .day, value: -7, to: newValue) ?? .distantPast
-                    var oneWeekToGoComponents = calendar.dateComponents([.year, .month, .day], from: oneWeekToGo)
-                    oneWeekToGoComponents.hour = 12
-                    NotificationsManager.scheduleNotificationAtDate(title: "Recency Expiring", subtitle: "Your recency expires in less than one week", dateComponents: oneWeekToGoComponents)
-                }*/
-            }
-        }
-
+        min(landingRecencyValidity, takeoffRecencyValidity)
     }
 
     /// Checks the recency validity date of the takeoffs in the current data structure
@@ -163,8 +142,20 @@ class FlightLog: ObservableObject {
         let correctedActivity = FlightActivity(id: activity.id, insertionDate: activity.insertionDate, takeoffs: activity.takeoffs, activityDate: correctedDate, landings: activity.landings)
 
         data.append(correctedActivity)
+        
+        // if the activity date is different, which means different days as the time is always 1200Z, sort by activity date; otherwise, sort by insertion date.
         data.sort {
-            $1.activityDate < $0.activityDate
+            if $1.activityDate != $0.activityDate {
+                return $1.activityDate < $0.activityDate
+            } else {
+                return $1.insertionDate < $0.insertionDate
+            }
+        }
+
+        // update the local user notifications if recent now
+
+        if isRecencyValid(at: Date()) {
+            NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
         }
     }
 
@@ -179,6 +170,14 @@ class FlightLog: ObservableObject {
     func removeActivity(activity: FlightActivity) throws {
         if let index = data.firstIndex(of: activity) {
             data.remove(at: index)
+
+            // update the local user notifications if recent now, clear them if the recency just became invalid
+            if isRecencyValid(at: Date()) {
+                NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
+            } else {
+                NotificationsManager.removePendingNotifications()
+            }
+
         } else {
             throw DataErrors.notFound
         }
@@ -188,12 +187,21 @@ class FlightLog: ObservableObject {
     /// - Parameter offsets: offsets sent by the swipe to delete command
     func removeActivity(at offsets: IndexSet) {
         data.remove(atOffsets: offsets)
+
+        // update the local user notifications if recent now, clear them if the recency just became invalid
+        if isRecencyValid(at: Date()) {
+            NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
+        } else {
+            NotificationsManager.removePendingNotifications()
+        }
     }
 
+    #if DEBUG
     /// Used by the internal testing suite to clear the activity log
     internal func clearLog() {
         data = []
     }
+    #endif
 
     /// This function checks recency validity (returned as a Bool) at a given date. The validity is extended up to the end of the day of that date in the current calendar.
     /// - Parameter date: date to be checked
