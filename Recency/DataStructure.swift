@@ -29,10 +29,18 @@ struct FlightActivity: Identifiable, Codable, Equatable {
     }
 }
 
+enum LocalNotificationPreferences: String, Codable {
+    case allowed
+    case denied
+    case maybeLater
+    case unknown
+}
+
 /// This class is used to store an array of FlightActivity data as well as its storage key on UserDefaults
 class FlightLog: ObservableObject {
 
     let flightActivityStorageKey = "FlightActivity"
+    let localNotificationPreferencesStorageKey = "LocalNotificationPreferences"
 
     @Published private(set) var data: [FlightActivity] {
         didSet {
@@ -41,6 +49,15 @@ class FlightLog: ObservableObject {
                 UserDefaults.standard.set(encoded, forKey: flightActivityStorageKey)
             }
 
+        }
+    }
+
+    @Published var localNotificationPreferences: LocalNotificationPreferences {
+        didSet {
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(localNotificationPreferences) {
+                UserDefaults.standard.set(encoded, forKey: localNotificationPreferencesStorageKey)
+            }
         }
     }
 
@@ -100,10 +117,16 @@ class FlightLog: ObservableObject {
     /// - Parameter emptyLog: if true an empty log will be created, for previewing and testing
     init(emptyLog: Bool = false) {
 
-        guard emptyLog == false else {
-            self.data = [FlightActivity]()
+        self.data = []
+        self.localNotificationPreferences = .unknown
 
-            return
+        guard emptyLog == false else { return }
+
+        if let notificationPreferencesData = UserDefaults.standard.data(forKey: localNotificationPreferencesStorageKey) {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode(LocalNotificationPreferences.self, from: notificationPreferencesData) {
+                self.localNotificationPreferences = decoded
+            }
         }
 
         if let data = UserDefaults.standard.data(forKey: flightActivityStorageKey) {
@@ -115,10 +138,8 @@ class FlightLog: ObservableObject {
                 self.data = self.data.filter {
                     $0.activityDate > sixMonthsAgo
                 }
-                return
             }
         }
-        self.data = []
     }
 
     /// This function adds an activity to the log
@@ -152,9 +173,9 @@ class FlightLog: ObservableObject {
             }
         }
 
-        // update the local user notifications if recent now
+        // update the local user notifications if recent now and local notifications shows allowed
 
-        if isRecencyValid(at: Date()) {
+        if isRecencyValid(at: Date()) && localNotificationPreferences == .allowed {
             NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
         }
     }
@@ -172,10 +193,12 @@ class FlightLog: ObservableObject {
             data.remove(at: index)
 
             // update the local user notifications if recent now, clear them if the recency just became invalid
-            if isRecencyValid(at: Date()) {
-                NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
-            } else {
-                NotificationsManager.removePendingNotifications()
+            if localNotificationPreferences == .allowed {
+                if isRecencyValid(at: Date()) {
+                    NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
+                } else {
+                    NotificationsManager.removePendingNotifications()
+                }
             }
 
         } else {
@@ -189,11 +212,14 @@ class FlightLog: ObservableObject {
         data.remove(atOffsets: offsets)
 
         // update the local user notifications if recent now, clear them if the recency just became invalid
-        if isRecencyValid(at: Date()) {
-            NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
-        } else {
-            NotificationsManager.removePendingNotifications()
+        if localNotificationPreferences == .allowed {
+            if isRecencyValid(at: Date()) {
+                NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: recencyValidity)
+            } else {
+                NotificationsManager.removePendingNotifications()
+            }
         }
+
     }
 
     #if DEBUG

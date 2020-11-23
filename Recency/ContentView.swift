@@ -12,6 +12,7 @@ enum ActiveSheet: Identifiable {
 
     case addActivity
     case welcomeSheet
+    case notificationsRequest
 
     var id: String {
         UUID().uuidString
@@ -59,31 +60,28 @@ struct ContentView: View {
                         #if DEBUG
                         // for development purposes
                         Section(header: Text("Development Only")) {
-                            /*
-                            Button("Request Notification Permission") {
-                                NotificationsManager.requestPermission()
-                            }
-                            Button("Schedule Test Notifications") {
-
-                                NotificationsManager.removePendingNotifications()
-
-                                NotificationsManager.testStandardNotifications()
-                            }
-                            Button("Schedule Notification From Recency") {
-                                NotificationsManager.removePendingNotifications()
-                                NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: flightLog.recencyValidity)
-                            }*/
                             Button("Print Pending Notifications") {
                                 NotificationsManager.printPendingNotifications()
                             }
-                            Button("Check Auth Status") {
+                            Button("Check Apple Auth Status") {
+                                print("Apple Authorisation Status")
                                 UNUserNotificationCenter.current().getNotificationSettings { settings in
 
                                     switch settings.authorizationStatus {
                                     case .authorized: print("authorized")
                                     case .denied: print("denied")
+                                    case .notDetermined: print("not determined")
                                     default: print("other")
                                     }
+                                }
+                            }
+                            Button("Check Local Auth Status") {
+                                print("Local Authorisation Status")
+                                switch flightLog.localNotificationPreferences {
+                                case .allowed: print("allowed")
+                                case .denied: print("denied")
+                                case .unknown: print("unknown")
+                                case .maybeLater: print("maybe later")
                                 }
                             }
                         }
@@ -97,10 +95,25 @@ struct ContentView: View {
         .sheet(item: $activeSheet) { item in
             switch item {
             case .addActivity:
-                AddActivity(flightLog: flightLog)
+                NavigationView {
+                    AddActivity(flightLog: flightLog)
+                }.onDisappear {
+                    now = Date()
+                    print("add activity onDisappear triggered")
+                    if flightLog.isRecencyValid(at: now) && flightLog.localNotificationPreferences == .unknown {
+                        activeSheet = .notificationsRequest
+                    }
+                }
+
             case .welcomeSheet:
                 WelcomeSheet()
+
+            case .notificationsRequest:
+                NavigationView {
+                    NotificationsRequestView(flightLog: flightLog)
+                }
             }
+
         }
         .onAppear {
             //update reference date
@@ -110,6 +123,9 @@ struct ContentView: View {
                 //first run
                 UserDefaults.standard.set(true, forKey: secondPlusRunStorageKey)
                 activeSheet = .welcomeSheet
+            }
+            if flightLog.localNotificationPreferences == .maybeLater && flightLog.isRecencyValid(at: now) {
+                activeSheet = .notificationsRequest
             }
         }
     }

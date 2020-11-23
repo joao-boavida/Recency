@@ -26,58 +26,60 @@ struct AddActivity: View {
     let inOneMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? .distantFuture
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section {
-                    Text("Take-offs")
-                        .font(.headline)
-                    Picker("Take-offs", selection: $takeoffs) {
-                        ForEach(0 ..< pickerLabels.count) {
-                            Text("\(pickerLabels[$0])")
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
-                    .accessibility(identifier: "takeOffPicker")
-                    Text("Landings")
-                        .font(.headline)
-                    Picker("Take-offs", selection: $landings) {
-                        ForEach(0 ..< pickerLabels.count) {
-                            Text("\(pickerLabels[$0])")
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
-                    .accessibility(identifier: "landingPicker")
-                }
-                Section {
-                    DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
-                        .accessibility(identifier: "datePicker")
-                }
-                Section {
-                    Button("Done") {
-                        let activity = FlightActivity(takeoffs: takeoffs, activityDate: activityDate, landings: landings)
 
-                        flightLog.addActivity(activity: activity)
-                        presentationMode.wrappedValue.dismiss()
-
-                    }
-                    .disabled(landings == 0 && takeoffs == 0)
+        Form {
+            Section {
+                Text("Take-offs")
                     .font(.headline)
-                    .accessibility(identifier: "doneButton")
+                Picker("Take-offs", selection: $takeoffs) {
+                    ForEach(0 ..< pickerLabels.count) {
+                        Text("\(pickerLabels[$0])")
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .accessibility(identifier: "takeOffPicker")
+                Text("Landings")
+                    .font(.headline)
+                Picker("Take-offs", selection: $landings) {
+                    ForEach(0 ..< pickerLabels.count) {
+                        Text("\(pickerLabels[$0])")
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .accessibility(identifier: "landingPicker")
+            }
+            Section {
+                DatePicker("Date", selection: $activityDate, in: sixMonthsAgo ... inOneMonth, displayedComponents: .date)
+                    .accessibility(identifier: "datePicker")
+            }
+            Section {
+                Button("Done") {
+                    let activity = FlightActivity(takeoffs: takeoffs, activityDate: activityDate, landings: landings)
 
-                    Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
-                    }.foregroundColor(.red)
-                    .accessibility(identifier: "cancelButton")
-
+                    flightLog.addActivity(activity: activity)
+                    presentationMode.wrappedValue.dismiss()
                 }
+                .disabled(landings == 0 && takeoffs == 0)
+                .font(.headline)
+                .accessibility(identifier: "doneButton")
+
+                Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }.foregroundColor(.red)
+                .accessibility(identifier: "cancelButton")
 
             }
-            .navigationBarTitle("Add Activity")
+
         }
+        .navigationBarTitle("Add Activity", displayMode: .inline)
+
     }
 }
 
 struct AddActivity_Previews: PreviewProvider {
     static var previews: some View {
-        AddActivity(flightLog: FlightLog())
-            .environment(\.colorScheme, .dark)
+        NavigationView {
+            AddActivity(flightLog: FlightLog())
+                .environment(\.colorScheme, .dark)
+        }
+
     }
 }
