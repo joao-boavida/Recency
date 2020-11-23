@@ -8,8 +8,10 @@
 import Foundation
 import UserNotifications
 
+/// This type andles code to interact with the UserNotifications framework. All methods and variables are static.
 struct NotificationsManager {
 
+    // These strings hold the text used in the notifications. The Expiring notification is given on the expiry date while the warning notification is issued 14 days earlier.
     static let expiringNotificationTitle = "Recent Experience Expiring Today"
     static let expiringNotificationSubtitle = "You may not have valid recent experience by tomorrow"
 
@@ -18,20 +20,12 @@ struct NotificationsManager {
 
     static let center = UNUserNotificationCenter.current()
 
-    static func requestPermission() {
-
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-
-            if let error = error {
-                print(error.localizedDescription) // for debug
-            }
-
-            print("Current Authorisation status: \(granted)")
-
-        }
-
-    }
-
+    /// Schedules a notification at 12:00 at a given day.
+    /// - Parameters:
+    ///   - title: notification title
+    ///   - subtitle: notification subtitle
+    ///   - date: the date at which the notification should be delivered
+    ///   - badge: the number to badge the app icon with
     static func scheduleNotificationAtDate(title: String, subtitle: String, date: Date, badge: NSNumber = 0) {
 
         let dateComponents = Calendar.current.dateComponents(in: .current, from: date)
@@ -60,6 +54,8 @@ struct NotificationsManager {
 
     }
 
+    /// Schedule warning and validity notifications from a given recency date, requesting user authorisation from apple's framework on the way.
+    /// - Parameter recencyDate: recency date to generate the notification dates from
     static func scheduleNotificationsFromRecencyDate(recencyDate: Date) {
 
         center.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
@@ -80,12 +76,19 @@ struct NotificationsManager {
 
     }
 
+    /// Clears pending notifications.
     static func removePendingNotifications() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+       center.removeAllPendingNotificationRequests()
     }
 
     #if DEBUG
 
+    /// Schedules a notification a given amount of seconds in the future. Used for development.
+    /// - Parameters:
+    ///   - title: notification title
+    ///   - subtitle: notification subtitle
+    ///   - interval: number of seconds to go until the notification
+    ///   - badge: number to badge the app icon with
     static func scheduleNotificationInSeconds(title: String, subtitle: String, interval: Int, badge: NSNumber = 0) {
         let content = UNMutableNotificationContent()
 
@@ -103,6 +106,7 @@ struct NotificationsManager {
 
     }
 
+    /// Prints pending notifications to the debugger console. used for development.
     static func printPendingNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             if requests.isEmpty {
@@ -116,6 +120,7 @@ struct NotificationsManager {
         }
     }
 
+    /// schedules a warning and an expiry notification 5 and 10 seconds from now, used for testing.
     static func testStandardNotifications() {
         scheduleNotificationInSeconds(title: warningNotificationTitle, subtitle: warningNotificationSubtitle, interval: 5)
         scheduleNotificationInSeconds(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, interval: 10, badge: 1)

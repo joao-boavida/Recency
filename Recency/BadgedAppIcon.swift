@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+/// This view builds a badged app icon from app's the appstore icon by overlaying a red circle and a number. Used in the notification authorisation request screen.
 struct BadgedAppIcon: View {
 
+    /// The outer frame length of the view, which is square, containing all the elements
     let frameLength: CGFloat
 
+    /// The inner frame containing the app icon
     var innerFrameLength: CGFloat {
         frameLength*2/3
     }

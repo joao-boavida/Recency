@@ -24,6 +24,7 @@ struct ContentView: View {
 
     let secondPlusRunStorageKey = "SecondPlusRun"
 
+    /// holds the active sheet
     @State private var activeSheet: ActiveSheet?
 
     @State private var now = Date()
@@ -31,6 +32,7 @@ struct ContentView: View {
     /// The app's database
     @StateObject var flightLog = FlightLog()
 
+    /// Validity is only shown if recency is valid.
     var showingValidity: Bool {
         flightLog.isRecencyValid(at: now)
     }
@@ -58,7 +60,7 @@ struct ContentView: View {
                         .font(.headline)
                         .accessibility(identifier: "addActivityButton")
                         #if DEBUG
-                        // for development purposes
+                        // Functions used for development purposes
                         Section(header: Text("Development Only")) {
                             Button("Print Pending Notifications") {
                                 NotificationsManager.printPendingNotifications()
@@ -95,6 +97,7 @@ struct ContentView: View {
                 .navigationBarTitle("Recency Monitor")
             }
         }
+        //this sheet modifier uses the ActiveSheet enum to decide which sheet should be shown. Only one sheet is displayed at a time.
         .sheet(item: $activeSheet) { item in
             switch item {
             case .addActivity:
@@ -106,14 +109,11 @@ struct ContentView: View {
                         activeSheet = .notificationsRequest
                     }
                 }
-
             case .welcomeSheet:
                 WelcomeSheet()
-
             case .notificationsRequest:
                 NotificationsRequestView(flightLog: flightLog)
             }
-
         }
         .onAppear {
             //update reference date
@@ -124,8 +124,13 @@ struct ContentView: View {
                 UserDefaults.standard.set(true, forKey: secondPlusRunStorageKey)
                 activeSheet = .welcomeSheet
             }
+
             if flightLog.isRecencyValid(at: now) {
+
+                //if recency is valid now the app's icon should not be badged
                 UIApplication.shared.applicationIconBadgeNumber = 0
+
+                //furthermore, if either the user did not yet make a choice on notification preferences (perhaps they have just upgraded) or they have said "maybe later" now would be a good time to prompt them.
                 if flightLog.localNotificationPreferences == .maybeLater || flightLog.localNotificationPreferences == .unknown {
                     activeSheet = .notificationsRequest
                 }

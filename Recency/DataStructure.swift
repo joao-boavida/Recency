@@ -23,12 +23,15 @@ struct FlightActivity: Identifiable, Codable, Equatable {
         return dateFormatter.string(from: self.activityDate)
     }
 
+    #if DEBUG
     /// Used for UI Testing
     var shortDescription: String {
         "takeoffs: \(takeoffs) landings: \(landings)"
     }
+    #endif
 }
 
+/// This enum specified the possible states of the user's local notification preferences
 enum LocalNotificationPreferences: String, Codable {
     case allowed
     case denied
@@ -39,19 +42,21 @@ enum LocalNotificationPreferences: String, Codable {
 /// This class is used to store an array of FlightActivity data as well as its storage key on UserDefaults
 class FlightLog: ObservableObject {
 
+    /// Storage keys to try and avoid some of the pitfalls of the stringly typed UserDefaults API
     let flightActivityStorageKey = "FlightActivity"
     let localNotificationPreferencesStorageKey = "LocalNotificationPreferences"
 
+    /// This array holds the user's flight activities; the private setter ensures this struct's functions must be used to access it to avoid corrupted data. The property observer ensures values are stored in user defaults.
     @Published private(set) var data: [FlightActivity] {
         didSet {
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(data) {
                 UserDefaults.standard.set(encoded, forKey: flightActivityStorageKey)
             }
-
         }
     }
 
+    /// This variable holds and stores (in user defaults) the user's local notification preferences. Local notification preferences are used to avoid probing Apple's user notification preferences in order to contextualise the notification request and support a "maybe later" option.
     @Published var localNotificationPreferences: LocalNotificationPreferences {
         didSet {
             let encoder = JSONEncoder()
