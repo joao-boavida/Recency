@@ -32,7 +32,7 @@ struct NotificationsManager {
 
     }
 
-    static func scheduleNotificationAtDate(title: String, subtitle: String, date: Date) {
+    static func scheduleNotificationAtDate(title: String, subtitle: String, date: Date, badge: NSNumber = 0) {
 
         let dateComponents = Calendar.current.dateComponents(in: .current, from: date)
 
@@ -41,6 +41,7 @@ struct NotificationsManager {
         content.title = title
         content.subtitle = subtitle
         content.sound = .default
+        content.badge = badge
 
         // the simplified date components variable holds a stripped down version of the original dateComponents generated from the user provided date. This simplified variable is used to set the notification trigger, as the original dateComponents do not work.
 
@@ -67,7 +68,7 @@ struct NotificationsManager {
                 //in xcode sim this fails to work the first time the app requests user authorisation, however it works fine on an actual iPhone. In the simulator if a debug breakpoint is set somewhere in this closure it also works fine, so it should be an xcode problem.
 
                 removePendingNotifications()
-                scheduleNotificationAtDate(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, date: recencyDate)
+                scheduleNotificationAtDate(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, date: recencyDate, badge: 1)
                 if let reminderDate = Calendar.current.date(byAdding: .day, value: -14, to: recencyDate) {
                     scheduleNotificationAtDate(title: warningNotificationTitle, subtitle: warningNotificationSubtitle, date: reminderDate)
                 }
@@ -85,12 +86,13 @@ struct NotificationsManager {
 
     #if DEBUG
 
-    static func scheduleNotificationInSeconds(title: String, subtitle: String, interval: Int) {
+    static func scheduleNotificationInSeconds(title: String, subtitle: String, interval: Int, badge: NSNumber = 0) {
         let content = UNMutableNotificationContent()
 
         content.title = title
         content.subtitle = subtitle
         content.sound = .default
+        content.badge = badge
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(interval), repeats: false)
         let identifier = UUID().uuidString
@@ -116,7 +118,7 @@ struct NotificationsManager {
 
     static func testStandardNotifications() {
         scheduleNotificationInSeconds(title: warningNotificationTitle, subtitle: warningNotificationSubtitle, interval: 5)
-        scheduleNotificationInSeconds(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, interval: 10)
+        scheduleNotificationInSeconds(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, interval: 10, badge: 1)
     }
 
     #endif

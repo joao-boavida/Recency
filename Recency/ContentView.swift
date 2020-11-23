@@ -84,6 +84,9 @@ struct ContentView: View {
                                 case .maybeLater: print("maybe later")
                                 }
                             }
+                            Button("Test Standard Notifications") {
+                                NotificationsManager.testStandardNotifications()
+                            }
                         }
                         #endif
                     }

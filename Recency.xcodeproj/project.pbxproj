@@ -12,6 +12,7 @@
 		032F135725632BDF007ED8C2 /* ActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F135625632BDF007ED8C2 /* ActivityDetail.swift */; };
 		032F136525642A6C007ED8C2 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F136425642A6C007ED8C2 /* NotificationsManager.swift */; };
 		032F136D256B1883007ED8C2 /* NotificationsRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F136C256B1883007ED8C2 /* NotificationsRequestView.swift */; };
+		032F1372256BD80F007ED8C2 /* BadgedAppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F1371256BD80F007ED8C2 /* BadgedAppIcon.swift */; };
 		036300462544B07B00B90A97 /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036300452544B07B00B90A97 /* EditActivity.swift */; };
 		039134622535B0F20009DC32 /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039134612535B0F20009DC32 /* DataStructure.swift */; };
 		039134672535BE910009DC32 /* RecencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039134662535BE910009DC32 /* RecencyDetail.swift */; };
@@ -51,6 +52,7 @@
 		032F135625632BDF007ED8C2 /* ActivityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetail.swift; sourceTree = "<group>"; };
 		032F136425642A6C007ED8C2 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		032F136C256B1883007ED8C2 /* NotificationsRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRequestView.swift; sourceTree = "<group>"; };
+		032F1371256BD80F007ED8C2 /* BadgedAppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedAppIcon.swift; sourceTree = "<group>"; };
 		036300452544B07B00B90A97 /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
 		039134612535B0F20009DC32 /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
 		039134662535BE910009DC32 /* RecencyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecencyDetail.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				03AEC7AE253447AE00EB75E1 /* ContentView.swift */,
 				039134612535B0F20009DC32 /* DataStructure.swift */,
 				032F136C256B1883007ED8C2 /* NotificationsRequestView.swift */,
+				032F1371256BD80F007ED8C2 /* BadgedAppIcon.swift */,
 				036300452544B07B00B90A97 /* EditActivity.swift */,
 				032F136425642A6C007ED8C2 /* NotificationsManager.swift */,
 				03AEC7AC253447AE00EB75E1 /* RecencyApp.swift */,
@@ -426,6 +429,7 @@
 				03AEC7DB2534677C00EB75E1 /* AddActivity.swift in Sources */,
 				032F136525642A6C007ED8C2 /* NotificationsManager.swift in Sources */,
 				036300462544B07B00B90A97 /* EditActivity.swift in Sources */,
+				032F1372256BD80F007ED8C2 /* BadgedAppIcon.swift in Sources */,
 				032F135225632BD5007ED8C2 /* ValidityDetail.swift in Sources */,
 				03BDD5B9253B6AF000A8652D /* WelcomeSheet.swift in Sources */,
 				032F135725632BDF007ED8C2 /* ActivityDetail.swift in Sources */,
