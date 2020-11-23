@@ -21,6 +21,7 @@ If you allow notifications we will alert you once when there are 14 days left un
         GeometryReader { geo in
             NavigationView {
                 VStack(alignment: .center) {
+                    Spacer()
                     BadgedAppIcon(frameLength: geo.size.width/2)
                         .padding(.top)
                     Text("Would you like notifications?")
@@ -55,6 +56,7 @@ If you allow notifications we will alert you once when there are 14 days left un
                             flightLog.localNotificationPreferences = .maybeLater
                             presentationMode.wrappedValue.dismiss()
                         }
+                        Spacer()
                     }.font(.headline)
                     Spacer()
                 }.navigationBarHidden(true)
