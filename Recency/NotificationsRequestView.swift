@@ -23,7 +23,6 @@ If you allow notifications we will alert you once when there are 14 days left un
                 VStack(alignment: .center) {
                     Spacer()
                     BadgedAppIcon(frameLength: geo.size.width/2)
-                        .padding(.top)
                     Text("Would you like notifications?")
                         .font(.largeTitle)
                         .multilineTextAlignment(.center)
