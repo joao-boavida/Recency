@@ -112,9 +112,7 @@ struct ContentView: View {
                 WelcomeSheet()
 
             case .notificationsRequest:
-                NavigationView {
-                    NotificationsRequestView(flightLog: flightLog)
-                }
+                NotificationsRequestView(flightLog: flightLog)
             }
 
         }
