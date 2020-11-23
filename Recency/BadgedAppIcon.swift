@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct BadgedAppIcon: View {
 
     let frameLength: CGFloat

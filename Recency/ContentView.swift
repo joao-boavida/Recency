@@ -125,8 +125,10 @@ struct ContentView: View {
                 UserDefaults.standard.set(true, forKey: secondPlusRunStorageKey)
                 activeSheet = .welcomeSheet
             }
-            if flightLog.localNotificationPreferences == .maybeLater && flightLog.isRecencyValid(at: now) {
-                activeSheet = .notificationsRequest
+            if flightLog.localNotificationPreferences == .maybeLater || flightLog.localNotificationPreferences == .unknown {
+                if flightLog.isRecencyValid(at: now) {
+                    activeSheet = .notificationsRequest
+                }
             }
         }
     }

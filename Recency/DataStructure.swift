@@ -163,7 +163,6 @@ class FlightLog: ObservableObject {
         let correctedActivity = FlightActivity(id: activity.id, insertionDate: activity.insertionDate, takeoffs: activity.takeoffs, activityDate: correctedDate, landings: activity.landings)
 
         data.append(correctedActivity)
-        
         // if the activity date is different, which means different days as the time is always 1200Z, sort by activity date; otherwise, sort by insertion date.
         data.sort {
             if $1.activityDate != $0.activityDate {
