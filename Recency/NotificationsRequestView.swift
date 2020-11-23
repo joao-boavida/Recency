@@ -14,50 +14,51 @@ struct NotificationsRequestView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var bodyText = """
-If you allow notifications we will alert you once when there are 14 days left until your current recency date and once again on the expiring date.
+If you allow notifications we will alert you once when there are 14 days left until your current recency date and once again on the expiry date.
 """
 
     var body: some View {
-        NavigationView {
-            VStack(alignment: .center) {
-                BadgedAppIcon(frameLength: 200)
-                    .padding(.top)
-                Text("Would you like notifications?")
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                Text(bodyText)
-                    .padding()
-                Group {
-                    Button(action: {
-                        flightLog.localNotificationPreferences = .allowed
-                        NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: flightLog.recencyValidity)
-                        
+        GeometryReader { geo in
+            NavigationView {
+                VStack(alignment: .center) {
+                    BadgedAppIcon(frameLength: geo.size.width/2)
+                        .padding(.top)
+                    Text("Would you like notifications?")
+                        .font(.largeTitle)
+                        .multilineTextAlignment(.center)
+                    Text(bodyText)
+                        .padding()
+                    Group {
+                        Button(action: {
+                            flightLog.localNotificationPreferences = .allowed
+                            NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: flightLog.recencyValidity)
 
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Text("Yes, notify me")
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.blue)
-                            .clipShape(Capsule())
-                    })
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            Text("Yes, notify me")
+                                .font(.system(size: 20, weight: .bold, design: .default))
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color.blue)
+                                .clipShape(Capsule())
+                        })
 
-                    Button("No") {
+                        Button("No") {
 
-                        flightLog.localNotificationPreferences = .denied
+                            flightLog.localNotificationPreferences = .denied
 
-                        presentationMode.wrappedValue.dismiss()
-                    }.padding()
+                            presentationMode.wrappedValue.dismiss()
+                        }.padding()
 
-                    Button("Maybe later") {
-                        //maybe later actions
-                        flightLog.localNotificationPreferences = .maybeLater
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }.font(.headline)
-                Spacer(minLength: 30)
-            }.navigationBarHidden(true)
+                        Button("Maybe later") {
+                            //maybe later actions
+                            flightLog.localNotificationPreferences = .maybeLater
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }.font(.headline)
+                    Spacer()
+                }.navigationBarHidden(true)
+            }
         }
     }
 }
