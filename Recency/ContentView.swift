@@ -125,8 +125,9 @@ struct ContentView: View {
                 UserDefaults.standard.set(true, forKey: secondPlusRunStorageKey)
                 activeSheet = .welcomeSheet
             }
-            if flightLog.localNotificationPreferences == .maybeLater || flightLog.localNotificationPreferences == .unknown {
-                if flightLog.isRecencyValid(at: now) {
+            if flightLog.isRecencyValid(at: now) {
+                UIApplication.shared.applicationIconBadgeNumber = 0
+                if flightLog.localNotificationPreferences == .maybeLater || flightLog.localNotificationPreferences == .unknown {
                     activeSheet = .notificationsRequest
                 }
             }
