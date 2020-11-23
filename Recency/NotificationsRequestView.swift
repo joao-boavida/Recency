@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+/// This view is presented as a sheet and asks the user for their authorisation to send local notifications, storing the answer in the flightLog. Only a positive answer will produce an authorisation request from apple's user notification framework.
 struct NotificationsRequestView: View {
 
     @ObservedObject var flightLog: FlightLog
 
     @Environment(\.presentationMode) var presentationMode
 
+    /// The description text used in this view
     var bodyText = """
 If you allow notifications we will alert you once when there are 14 days left until your current recency date and once again on the expiry date.
 """
@@ -31,6 +33,7 @@ If you allow notifications we will alert you once when there are 14 days left un
                     Group {
                         Button(action: {
                             flightLog.localNotificationPreferences = .allowed
+                            // if the user allows notifications schedule them straight away! this method will trigger apple's authorisation request.
                             NotificationsManager.scheduleNotificationsFromRecencyDate(recencyDate: flightLog.recencyValidity)
 
                             presentationMode.wrappedValue.dismiss()
