@@ -102,7 +102,6 @@ struct ContentView: View {
                     AddActivity(flightLog: flightLog)
                 }.onDisappear {
                     now = Date()
-                    print("add activity onDisappear triggered")
                     if flightLog.isRecencyValid(at: now) && flightLog.localNotificationPreferences == .unknown {
                         activeSheet = .notificationsRequest
                     }

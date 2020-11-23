@@ -35,9 +35,12 @@ struct ActivityDetail: View {
     }
 }
 
-/*
 struct ActivityDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityDetail(flightLog: <#T##FlightLog#>, movementCellWidth: <#T##CGFloat#>, activity: <#T##FlightActivity#>)
+        NavigationView {
+            Form {
+                ActivityDetail(flightLog: FlightLog(emptyLog: true), movementCellWidth: 30, activity: FlightActivity(takeoffs: 2, activityDate: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, landings: 3))
+            }
+        }
     }
-}*/
+}

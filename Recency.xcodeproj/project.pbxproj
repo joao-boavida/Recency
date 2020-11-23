@@ -112,12 +112,12 @@
 		03AEC7A0253447AD00EB75E1 = {
 			isa = PBXGroup;
 			children = (
+				9C04598C28C159E95CB76BBE /* Frameworks */,
+				96723EFC013EFA66180922F9 /* Pods */,
+				03AEC7AA253447AE00EB75E1 /* Products */,
 				03AEC7AB253447AE00EB75E1 /* Recency */,
 				03AEC7BD253447B300EB75E1 /* RecencyTests */,
 				03AEC7C8253447B300EB75E1 /* RecencyUITests */,
-				03AEC7AA253447AE00EB75E1 /* Products */,
-				96723EFC013EFA66180922F9 /* Pods */,
-				9C04598C28C159E95CB76BBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,12 +137,12 @@
 				03AEC7B5253447B200EB75E1 /* Info.plist */,
 				032F135625632BDF007ED8C2 /* ActivityDetail.swift */,
 				03AEC7DA2534677C00EB75E1 /* AddActivity.swift */,
+				032F1371256BD80F007ED8C2 /* BadgedAppIcon.swift */,
 				03AEC7AE253447AE00EB75E1 /* ContentView.swift */,
 				039134612535B0F20009DC32 /* DataStructure.swift */,
-				032F136C256B1883007ED8C2 /* NotificationsRequestView.swift */,
-				032F1371256BD80F007ED8C2 /* BadgedAppIcon.swift */,
 				036300452544B07B00B90A97 /* EditActivity.swift */,
 				032F136425642A6C007ED8C2 /* NotificationsManager.swift */,
+				032F136C256B1883007ED8C2 /* NotificationsRequestView.swift */,
 				03AEC7AC253447AE00EB75E1 /* RecencyApp.swift */,
 				039134662535BE910009DC32 /* RecencyDetail.swift */,
 				032F135125632BD5007ED8C2 /* ValidityDetail.swift */,
@@ -183,10 +183,10 @@
 		96723EFC013EFA66180922F9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CC80A560C504C87EBD5EE48A /* Pods-Recency.debug.xcconfig */,
-				748B84A6D8CFFF388D012799 /* Pods-Recency.release.xcconfig */,
 				982AEE071367B55AB1562930 /* Pods-Recency-RecencyUITests.debug.xcconfig */,
 				D684F8A589460CBA82118706 /* Pods-Recency-RecencyUITests.release.xcconfig */,
+				CC80A560C504C87EBD5EE48A /* Pods-Recency.debug.xcconfig */,
+				748B84A6D8CFFF388D012799 /* Pods-Recency.release.xcconfig */,
 				B68B02EE4CAFA1A0B6E6D089 /* Pods-RecencyTests.debug.xcconfig */,
 				FC071854780666DCCE432644 /* Pods-RecencyTests.release.xcconfig */,
 			);

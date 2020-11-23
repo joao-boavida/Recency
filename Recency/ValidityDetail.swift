@@ -56,9 +56,17 @@ struct ValidityDetail: View {
     }
 }
 
-/*
 struct ValidityDetail_Previews: PreviewProvider {
     static var previews: some View {
-        
+        NavigationView {
+            Form {
+                Section {
+                    ValidityDetail(takeoffsValidityDate: Date(), landingsValidityDate: Date(), takeoffValidityStatus: true, landingValidityStatus: true)
+                }
+                Section {
+                    ValidityDetail(takeoffsValidityDate: Date(), landingsValidityDate: Date(), takeoffValidityStatus: false, landingValidityStatus: false)
+                }
+            }
+        }
     }
-}*/
+}

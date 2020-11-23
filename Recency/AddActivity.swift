@@ -26,7 +26,6 @@ struct AddActivity: View {
     let inOneMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? .distantFuture
 
     var body: some View {
-
         Form {
             Section {
                 Text("Take-offs")
@@ -65,12 +64,9 @@ struct AddActivity: View {
                     presentationMode.wrappedValue.dismiss()
                 }.foregroundColor(.red)
                 .accessibility(identifier: "cancelButton")
-
             }
-
         }
-        .navigationBarTitle("Add Activity", displayMode: .inline)
-
+        .navigationBarTitle("Add Activity")
     }
 }
 
