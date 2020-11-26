@@ -51,7 +51,7 @@ struct RecencyDetail_Previews: PreviewProvider {
         var components = DateComponents()
         components.year = 2020
         components.month = 10
-        components.day = 13
+        components.day = 4
         //components.calendar = .current
 
         let referenceDate = Calendar.current.date(from: components)!
@@ -61,12 +61,12 @@ struct RecencyDetail_Previews: PreviewProvider {
         // 3 days ago
         let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: referenceDate)!
 
-        let movement2 = FlightActivity(takeoffs: 2, activityDate: threeDaysAgo, landings: 1)
+        let movement2 = FlightActivity(takeoffs: 2, activityDate: threeDaysAgo, landings: 2)
 
         // 30 days ago
         let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -30, to: referenceDate)!
 
-        let movement3 = FlightActivity(takeoffs: 1, activityDate: thirtyDaysAgo, landings: 3)
+        let movement3 = FlightActivity(takeoffs: 1, activityDate: thirtyDaysAgo, landings: 1)
 
         // 100 days ago
         let hundredDaysAgo = Calendar.current.date(byAdding: .day, value: -100, to: referenceDate)!
@@ -82,6 +82,7 @@ struct RecencyDetail_Previews: PreviewProvider {
             NavigationView {
                 RecencyDetail(flightLog: sampleFlightLog)
             }
+            .previewDevice("iPhone 7")
             //.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
     }
 }

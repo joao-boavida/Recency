@@ -28,23 +28,23 @@ struct ValidityDetail: View {
 
     var body: some View {
         HStack {
-            Spacer()
             VStack {
                 takeoffValidityStatus ? AnyView(validImage) : AnyView(invalidImage)
                 Group {
                     Text("Takeoffs")
                     takeoffValidityStatus ? Text(formatDate(date: takeoffsValidityDate)) : Text("Expired")
                 }.font(.title2)
+                .padding(.leading, 10)
             }.foregroundColor(takeoffValidityStatus ? .green : .red)
-            Spacer(minLength: 70)
+            Spacer()
             VStack {
                 landingValidityStatus ? AnyView(validImage) : AnyView(invalidImage)
                 Group {
                     Text("Landings")
                     landingValidityStatus ? Text(formatDate(date: landingsValidityDate)) : Text("Expired")
                 }.font(.title2)
+                .padding(.trailing, 10)
             }.foregroundColor(landingValidityStatus ? .green : .red)
-            Spacer()
         }
     }
 
@@ -52,21 +52,36 @@ struct ValidityDetail: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
+        #if DEBUG
+        dateFormatter.locale = Locale(identifier: "en_PT")
+        #endif
         return dateFormatter.string(from: date)
     }
 }
 
 struct ValidityDetail_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+
+        var components = DateComponents()
+
+        components.year = 2020
+        components.month = 12
+        components.day = 30
+
+        let date1 = Calendar.current.date(from: components)!
+
+        return NavigationView {
             Form {
                 Section {
-                    ValidityDetail(takeoffsValidityDate: Date(), landingsValidityDate: Date(), takeoffValidityStatus: true, landingValidityStatus: true)
+                    ValidityDetail(takeoffsValidityDate: date1, landingsValidityDate: Date(), takeoffValidityStatus: true, landingValidityStatus: true)
+
                 }
                 Section {
                     ValidityDetail(takeoffsValidityDate: Date(), landingsValidityDate: Date(), takeoffValidityStatus: false, landingValidityStatus: false)
                 }
             }
         }
+        .previewDevice("iPhone 7")
+        
     }
 }
