@@ -52,9 +52,6 @@ struct ValidityDetail: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
-        #if DEBUG
-        dateFormatter.locale = Locale(identifier: "en_PT")
-        #endif
         return dateFormatter.string(from: date)
     }
 }
