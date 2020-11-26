@@ -23,12 +23,11 @@ struct FlightActivity: Identifiable, Codable, Equatable {
         return dateFormatter.string(from: self.activityDate)
     }
 
-    #if DEBUG
     /// Used for UI Testing
     var shortDescription: String {
         "takeoffs: \(takeoffs) landings: \(landings)"
     }
-    #endif
+
 }
 
 /// This enum specified the possible states of the user's local notification preferences
