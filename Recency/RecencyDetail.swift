@@ -16,7 +16,7 @@ struct RecencyDetail: View {
         GeometryReader { geo in
             Form {
                 Section(header: Text("Takeoff and Landing Validity")) {
-                    ValidityDetail(takeoffsValidityDate: flightLog.takeoffRecencyValidity, landingsValidityDate: flightLog.landingRecencyValidity, takeoffValidityStatus: flightLog.areTakeoffsValid(at: Date()), landingValidityStatus: flightLog.areLandingsValid(at: Date()))
+                    ValidityDetail(takeoffsValidityDate: flightLog.takeoffRecencyValidity, landingsValidityDate: flightLog.landingRecencyValidity, takeoffValidityStatus: flightLog.areTakeoffsValid(at: Date()), landingValidityStatus: flightLog.areLandingsValid(at: Date()), screenWidth: geo.size.width)
                 }.padding([.top, .bottom], 10)
 
                 Section(header: Text("Activity log")) {
@@ -82,7 +82,7 @@ struct RecencyDetail_Previews: PreviewProvider {
             NavigationView {
                 RecencyDetail(flightLog: sampleFlightLog)
             }
-            .previewDevice("iPhone 7")
+
             //.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
     }
 }

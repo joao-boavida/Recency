@@ -59,7 +59,7 @@ struct ContentView: View {
                         }
                         .font(.headline)
                         .accessibility(identifier: "addActivityButton")
-                        #if DEBUG
+                        /*#if DEBUG
                         // Functions used for development purposes
                         Section(header: Text("Development Only")) {
                             Button("Print Pending Notifications") {
@@ -90,7 +90,7 @@ struct ContentView: View {
                                 NotificationsManager.testStandardNotifications()
                             }
                         }
-                        #endif
+                        #endif*/
                     }
 
                 }
