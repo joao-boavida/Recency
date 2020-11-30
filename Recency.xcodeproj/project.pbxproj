@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03066D3D257541F000D1460A /* FCL 060.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 03066D23257541EF00D1460A /* FCL 060.pdf */; };
+		03066D3E257541F000D1460A /* 14 CFR 61.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 03066D24257541EF00D1460A /* 14 CFR 61.pdf */; };
+		03066D3F257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.22.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D27257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.22.png */; };
+		03066D40257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.46.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D28257541EF00D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.46.png */; };
+		03066D41257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.08.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D29257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.08.png */; };
+		03066D42257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.24.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D2A257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.24.png */; };
+		03066D43257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.13.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D2B257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.13.png */; };
+		03066D44257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.07.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D2C257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.07.png */; };
+		03066D45257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.44.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D2D257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.44.png */; };
+		03066D46257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.19.17.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D2E257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.19.17.png */; };
+		03066D47257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.23.56.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D2F257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.23.56.png */; };
+		03066D48257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.17.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D30257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.17.png */; };
+		03066D49257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.59.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D31257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.59.png */; };
+		03066D4A257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.41.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D33257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.41.png */; };
+		03066D4B257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.42.06.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D34257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.42.06.png */; };
+		03066D4C257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.24.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D35257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.24.png */; };
+		03066D4D257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.19.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D36257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.19.png */; };
+		03066D4E257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.44.19.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D37257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.44.19.png */; };
+		03066D4F257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.00.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D38257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.00.png */; };
+		03066D50257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.14.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D39257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.14.png */; };
+		03066D51257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.03.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D3A257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.03.png */; };
+		03066D52257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.46.51.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D3B257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.46.51.png */; };
+		03066D53257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.06.png in Resources */ = {isa = PBXBuildFile; fileRef = 03066D3C257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.06.png */; };
 		0311DBA72562CFA400F34171 /* ValidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0311DBA62562CFA300F34171 /* ValidityView.swift */; };
 		032F135225632BD5007ED8C2 /* ValidityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F135125632BD5007ED8C2 /* ValidityDetail.swift */; };
 		032F135725632BDF007ED8C2 /* ActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F135625632BDF007ED8C2 /* ActivityDetail.swift */; };
@@ -47,6 +70,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03066D23257541EF00D1460A /* FCL 060.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "FCL 060.pdf"; sourceTree = "<group>"; };
+		03066D24257541EF00D1460A /* 14 CFR 61.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "14 CFR 61.pdf"; sourceTree = "<group>"; };
+		03066D27257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.22.png"; sourceTree = "<group>"; };
+		03066D28257541EF00D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.46.png"; sourceTree = "<group>"; };
+		03066D29257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.08.png"; sourceTree = "<group>"; };
+		03066D2A257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.24.png"; sourceTree = "<group>"; };
+		03066D2B257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.13.png"; sourceTree = "<group>"; };
+		03066D2C257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.07.png"; sourceTree = "<group>"; };
+		03066D2D257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.44.png"; sourceTree = "<group>"; };
+		03066D2E257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.19.17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.19.17.png"; sourceTree = "<group>"; };
+		03066D2F257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.23.56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.23.56.png"; sourceTree = "<group>"; };
+		03066D30257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.17.png"; sourceTree = "<group>"; };
+		03066D31257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.59.png"; sourceTree = "<group>"; };
+		03066D33257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.41.png"; sourceTree = "<group>"; };
+		03066D34257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.42.06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.42.06.png"; sourceTree = "<group>"; };
+		03066D35257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.24.png"; sourceTree = "<group>"; };
+		03066D36257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.19.png"; sourceTree = "<group>"; };
+		03066D37257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.44.19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.44.19.png"; sourceTree = "<group>"; };
+		03066D38257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.00.png"; sourceTree = "<group>"; };
+		03066D39257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.14.png"; sourceTree = "<group>"; };
+		03066D3A257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.03.png"; sourceTree = "<group>"; };
+		03066D3B257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.46.51.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.46.51.png"; sourceTree = "<group>"; };
+		03066D3C257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.06.png"; sourceTree = "<group>"; };
 		0311DBA62562CFA300F34171 /* ValidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityView.swift; sourceTree = "<group>"; };
 		032F135125632BD5007ED8C2 /* ValidityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityDetail.swift; sourceTree = "<group>"; };
 		032F135625632BDF007ED8C2 /* ActivityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetail.swift; sourceTree = "<group>"; };
@@ -109,6 +155,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03066D22257541EF00D1460A /* Regulations */ = {
+			isa = PBXGroup;
+			children = (
+				03066D23257541EF00D1460A /* FCL 060.pdf */,
+				03066D24257541EF00D1460A /* 14 CFR 61.pdf */,
+			);
+			path = Regulations;
+			sourceTree = "<group>";
+		};
+		03066D25257541EF00D1460A /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				03066D26257541EF00D1460A /* v1.0 */,
+				03066D32257541F000D1460A /* v1.1 */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		03066D26257541EF00D1460A /* v1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				03066D27257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.22.png */,
+				03066D28257541EF00D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.46.png */,
+				03066D29257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.08.png */,
+				03066D2A257541EF00D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.24.png */,
+				03066D2B257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.13.png */,
+				03066D2C257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.07.png */,
+				03066D2D257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.44.png */,
+				03066D2E257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.19.17.png */,
+				03066D2F257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.23.56.png */,
+				03066D30257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.17.png */,
+				03066D31257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.59.png */,
+			);
+			path = v1.0;
+			sourceTree = "<group>";
+		};
+		03066D32257541F000D1460A /* v1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				03066D33257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.41.png */,
+				03066D34257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.42.06.png */,
+				03066D35257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.24.png */,
+				03066D36257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.19.png */,
+				03066D37257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.44.19.png */,
+				03066D38257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.00.png */,
+				03066D39257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.14.png */,
+				03066D3A257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.03.png */,
+				03066D3B257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.46.51.png */,
+				03066D3C257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.06.png */,
+			);
+			path = v1.1;
+			sourceTree = "<group>";
+		};
 		03AEC7A0253447AD00EB75E1 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +233,8 @@
 		03AEC7AB253447AE00EB75E1 /* Recency */ = {
 			isa = PBXGroup;
 			children = (
+				03066D22257541EF00D1460A /* Regulations */,
+				03066D25257541EF00D1460A /* Screenshots */,
 				03AEC7B5253447B200EB75E1 /* Info.plist */,
 				032F135625632BDF007ED8C2 /* ActivityDetail.swift */,
 				03AEC7DA2534677C00EB75E1 /* AddActivity.swift */,
@@ -310,8 +411,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03066D42257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.24.png in Resources */,
+				03066D53257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.06.png in Resources */,
+				03066D51257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.03.png in Resources */,
+				03066D50257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.14.png in Resources */,
+				03066D49257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.59.png in Resources */,
+				03066D44257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.07.png in Resources */,
+				03066D41257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.08.png in Resources */,
+				03066D3E257541F000D1460A /* 14 CFR 61.pdf in Resources */,
+				03066D52257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.46.51.png in Resources */,
+				03066D3F257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.22.png in Resources */,
+				03066D45257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.44.png in Resources */,
+				03066D4E257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.44.19.png in Resources */,
 				03AEC7B4253447B200EB75E1 /* Preview Assets.xcassets in Resources */,
+				03066D40257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.17.46.png in Resources */,
+				03066D47257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.23.56.png in Resources */,
+				03066D4C257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.24.png in Resources */,
+				03066D4F257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.00.png in Resources */,
+				03066D43257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.18.13.png in Resources */,
+				03066D4D257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.43.19.png in Resources */,
 				03AEC7B1253447B200EB75E1 /* Assets.xcassets in Resources */,
+				03066D3D257541F000D1460A /* FCL 060.pdf in Resources */,
+				03066D48257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-10-25 at 18.24.17.png in Resources */,
+				03066D4B257541F000D1460A /* Simulator Screen Shot - iPhone 8 Plus - 2020-11-29 at 14.42.06.png in Resources */,
+				03066D46257541F000D1460A /* Simulator Screen Shot - iPhone 11 Pro Max - 2020-10-25 at 18.19.17.png in Resources */,
+				03066D4A257541F000D1460A /* Simulator Screen Shot - iPhone 12 Pro Max - 2020-11-29 at 14.47.41.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
