@@ -24,7 +24,6 @@ struct WelcomeSheet: View {
                 Spacer()
                 Text("Welcome!")
                     .font(.largeTitle)
-                //Spacer()
                 Text("""
 This app helps you keep track of your compliance with EASA-FCL.060 / FAA 14 CFR 61.57 Recent Experience requirements by logging your latest takeoffs and landings.
 
@@ -51,6 +50,5 @@ Fly safe!
 struct WelcomeSheet_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeSheet()
-            //.environment(\.colorScheme, .dark)
     }
 }

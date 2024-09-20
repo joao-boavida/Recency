@@ -97,7 +97,7 @@ struct ContentView: View {
                 .navigationBarTitle("Recency Monitor")
             }
         }
-        //this sheet modifier uses the ActiveSheet enum to decide which sheet should be shown. Only one sheet is displayed at a time.
+        // this sheet modifier uses the ActiveSheet enum to decide which sheet should be shown. Only one sheet is displayed at a time.
         .sheet(item: $activeSheet) { item in
             switch item {
             case .addActivity:
@@ -116,21 +116,21 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            //update reference date
+            // update reference date
             now = Date()
-            //check for first run here
+            // check for first run here
             if UserDefaults.standard.bool(forKey: secondPlusRunStorageKey) == false {
-                //first run
+                // first run
                 UserDefaults.standard.set(true, forKey: secondPlusRunStorageKey)
                 activeSheet = .welcomeSheet
             }
 
             if flightLog.isRecencyValid(at: now) {
 
-                //if recency is valid now the app's icon should not be badged
+                // if recency is valid now the app's icon should not be badged
                 UIApplication.shared.applicationIconBadgeNumber = 0
 
-                //furthermore, if either the user did not yet make a choice on notification preferences (perhaps they have just upgraded) or they have said "maybe later" now would be a good time to prompt them.
+                // furthermore, if either the user did not yet make a choice on notification preferences (perhaps they have just upgraded) or they have said "maybe later" now would be a good time to prompt them.
                 if flightLog.localNotificationPreferences == .maybeLater || flightLog.localNotificationPreferences == .unknown {
                     activeSheet = .notificationsRequest
                 }

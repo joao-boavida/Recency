@@ -60,8 +60,8 @@ struct NotificationsManager {
 
         center.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
             if success {
-                //asynchronous as the system may have to wait for user answer
-                //in xcode sim this fails to work the first time the app requests user authorisation, however it works fine on an actual iPhone. In the simulator if a debug breakpoint is set somewhere in this closure it also works fine, so it should be an xcode problem.
+                // asynchronous as the system may have to wait for user answer
+                // in xcode sim this fails to work the first time the app requests user authorisation, however it works fine on an actual iPhone. In the simulator if a debug breakpoint is set somewhere in this closure it also works fine, so it should be an xcode problem.
 
                 removePendingNotifications()
                 scheduleNotificationAtDate(title: expiringNotificationTitle, subtitle: expiringNotificationSubtitle, date: recencyDate, badge: 1)

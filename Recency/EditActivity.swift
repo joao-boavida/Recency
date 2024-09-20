@@ -99,7 +99,7 @@ struct EditActivity: View {
         }
         .navigationBarTitle("Edit Activity", displayMode: .inline)
         .onAppear {
-            //load the initial state from the activity to be edited
+            // load the initial state from the activity to be edited
             takeoffs = originalActivity.takeoffs
             landings = originalActivity.landings
             activityDate = originalActivity.activityDate

@@ -46,7 +46,6 @@ struct BadgedAppIcon: View {
 struct BadgedAppIcon_Previews: PreviewProvider {
     static var previews: some View {
             BadgedAppIcon(frameLength: 200)
-                //.preferredColorScheme(.dark)
     }
 
 }

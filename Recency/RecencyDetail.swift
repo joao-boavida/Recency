@@ -52,7 +52,7 @@ struct RecencyDetail_Previews: PreviewProvider {
         components.year = 2020
         components.month = 10
         components.day = 4
-        //components.calendar = .current
+        // components.calendar = .current
 
         let referenceDate = Calendar.current.date(from: components)!
 
@@ -82,7 +82,5 @@ struct RecencyDetail_Previews: PreviewProvider {
             NavigationView {
                 RecencyDetail(flightLog: sampleFlightLog)
             }
-
-            //.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
     }
 }

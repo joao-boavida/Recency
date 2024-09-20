@@ -54,7 +54,7 @@ If you allow notifications we will alert you once when there are 14 days left un
                         }.padding()
 
                         Button("Maybe later") {
-                            //maybe later actions
+                            // maybe later actions
                             flightLog.localNotificationPreferences = .maybeLater
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -70,6 +70,5 @@ If you allow notifications we will alert you once when there are 14 days left un
 struct NotificationsRequestView_Previews: PreviewProvider {
     static var previews: some View {
         NotificationsRequestView(flightLog: FlightLog(emptyLog: true))
-            //.preferredColorScheme(.dark)
     }
 }

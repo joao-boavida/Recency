@@ -75,7 +75,7 @@ class FlightLog: ObservableObject {
     /// - Returns: takeoff validity limit, distant past if unable to determine
     var takeoffRecencyValidity: Date {
 
-        //sort the flight log by takeoff dates beginning with the most recent one
+        // sort the flight log by takeoff dates beginning with the most recent one
         let sortedFlightLog = data.sorted {
             $0.activityDate > $1.activityDate
         }
@@ -137,7 +137,7 @@ class FlightLog: ObservableObject {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([FlightActivity].self, from: data) {
                 self.data = decoded
-                //data more than 6months old is discarded
+                // data more than 6months old is discarded
                 let sixMonthsAgo = Calendar.current.date(byAdding: .month, value: -6, to: Date()) ?? .distantPast
                 self.data = self.data.filter {
                     $0.activityDate > sixMonthsAgo

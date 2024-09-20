@@ -27,7 +27,6 @@ class RecencyTests: XCTestCase {
         components.second = 0
         components.nanosecond = 0
         components.timeZone = TimeZone(identifier: "UTC")
-        //components.calendar = .current
         referenceDate = Calendar.current.date(from: components)!
 
     }
@@ -42,13 +41,11 @@ class RecencyTests: XCTestCase {
     func testAddActivity() {
         // Append 2 activities that then get sorted. assert the correct sorting.
 
-        //let movement1 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 1)
         let movement1 = FlightActivity(id: UUID(), insertionDate: referenceDate, takeoffs: 1, activityDate: referenceDate, landings: 1)
 
         // 3 days ago
         let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: referenceDate)!
 
-        //let movement2 = FlightActivity(takeoffs: 1, activityDate: threeDaysAgo, landings: 1)
         let movement2 = FlightActivity(id: UUID(), insertionDate: threeDaysAgo, takeoffs: 1, activityDate: threeDaysAgo, landings: 1)
 
         sut.addActivity(activity: movement2)
@@ -82,7 +79,7 @@ class RecencyTests: XCTestCase {
 
         let checkDate = Calendar.current.date(from: components)!
 
-        //recency limited by landings
+        // recency limited by landings
         let movement1 = FlightActivity(takeoffs: 3, activityDate: referenceDate, landings: 1)
         let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: referenceDate)!
         let movement2 = FlightActivity(takeoffs: 1, activityDate: threeDaysAgo, landings: 3)
@@ -90,15 +87,13 @@ class RecencyTests: XCTestCase {
         sut.addActivity(activity: movement2)
         sut.addActivity(activity: movement1)
 
-        //let correctRecency = Calendar.current.date(byAdding: .day, value: 90, to: threeDaysAgo)
-
         XCTAssertTrue(sut.isRecencyValid(at: checkDate))
 
     }
 
     func testRecencyValidity() {
 
-        //recency limited by landings
+        // recency limited by landings
         let movement1 = FlightActivity(takeoffs: 3, activityDate: referenceDate, landings: 1)
         let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: referenceDate)!
         let movement2 = FlightActivity(takeoffs: 1, activityDate: threeDaysAgo, landings: 3)
@@ -110,9 +105,8 @@ class RecencyTests: XCTestCase {
 
         XCTAssertEqual(sut.recencyValidity, correctRecency)
 
-        //recency limited by takeoffs
+        // recency limited by takeoffs
         sut.clearLog()
-        //sut.data = []
         let movement3 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 3)
         let movement4 = FlightActivity(takeoffs: 3, activityDate: threeDaysAgo, landings: 1)
 
@@ -134,7 +128,6 @@ class RecencyTests: XCTestCase {
         XCTAssertEqual(sut.takeoffRecencyValidity, .distantPast)
 
         sut.clearLog()
-        //sut.data = []
 
         let movement3 = FlightActivity(takeoffs: 3, activityDate: referenceDate, landings: 1)
 
@@ -157,7 +150,6 @@ class RecencyTests: XCTestCase {
         XCTAssertEqual(sut.landingRecencyValidity, .distantPast)
 
         sut.clearLog()
-        //sut.data = []
 
         let movement3 = FlightActivity(takeoffs: 1, activityDate: referenceDate, landings: 3)
 

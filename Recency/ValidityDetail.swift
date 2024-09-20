@@ -24,32 +24,27 @@ struct ValidityDetail: View {
         10 + 30 * (screenWidth - 320)/(428-320)
     }
 
-    var validImage: some View {
-        Image(systemName: "checkmark.circle.fill")
-            .font(.system(size: 40))
-    }
-
-    var invalidImage: some View {
-        Image(systemName: "xmark.octagon.fill")
-            .font(.system(size: 40))
-    }
+    static let validImageSystemName = "checkmark.circle.fill"
+    static let invalidImageSystemName = "xmark.octagon.fill"
 
     var body: some View {
         HStack {
             VStack {
                 Group {
-                    takeoffValidityStatus ? AnyView(validImage) : AnyView(invalidImage)
+                    Image(systemName: takeoffValidityStatus ? Self.validImageSystemName : Self.invalidImageSystemName)
+                        .font(.system(size: 40))
                     Text("Takeoffs")
-                    takeoffValidityStatus ? Text(formatDate(date: takeoffsValidityDate)) : Text("Expired")
+                    Text(takeoffValidityStatus ? formatDate(date: takeoffsValidityDate) : "Expired")
                 }.font(.title2)
                 .padding(.leading, paddingAmount)
             }.foregroundColor(takeoffValidityStatus ? .green : .red)
             Spacer()
             VStack {
                 Group {
-                    landingValidityStatus ? AnyView(validImage) : AnyView(invalidImage)
+                    Image(systemName: landingValidityStatus ? Self.validImageSystemName : Self.invalidImageSystemName)
+                        .font(.system(size: 40))
                     Text("Landings")
-                    landingValidityStatus ? Text(formatDate(date: landingsValidityDate)) : Text("Expired")
+                    Text(landingValidityStatus ? formatDate(date: landingsValidityDate) : "Expired")
                 }.font(.title2)
                 .padding(.trailing, paddingAmount)
             }.foregroundColor(landingValidityStatus ? .green : .red)

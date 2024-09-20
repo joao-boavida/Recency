@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "22088F3C-A67C-4A8F-8552-2ABD8B69F32C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Recency.xcodeproj",
+        "identifier" : "03AEC7C4253447B300EB75E1",
+        "name" : "RecencyUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Recency.xcodeproj",
+        "identifier" : "03AEC7B9253447B300EB75E1",
+        "name" : "RecencyTests"
+      }
+    }
+  ],
+  "version" : 1
+}

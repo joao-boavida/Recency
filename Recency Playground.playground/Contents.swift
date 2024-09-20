@@ -25,7 +25,7 @@ class FlightLog: ObservableObject {
 
     func checkTakeoffRecency() -> Date {
 
-        //sort the flight log by takeoff dates beginning with the most recent one
+        // sort the flight log by takeoff dates beginning with the most recent one
         let sortedFlightLog = data.sorted {
             $0.takeoffDate > $1.takeoffDate
         }
@@ -68,8 +68,6 @@ class FlightLog: ObservableObject {
     }
 }
 
-//testing
-
 var sampleFlightLog = FlightLog()
 
 // referenceDate
@@ -78,7 +76,6 @@ var components = DateComponents()
 components.year = 2020
 components.month = 10
 components.day = 13
-//components.calendar = .current
 
 components.isValidDate
 
