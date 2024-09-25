@@ -13,8 +13,22 @@ struct AddActivity: View {
     /// the FlightLog which will be created for insertion
     @ObservedObject var flightLog: FlightLog
 
-    @State private var landings = 1
-    @State private var takeoffs = 1
+    /// The selection in the landings picker
+    @State private var landingsSelection = "1"
+
+    /// The selection in the takeoffs picker
+    @State private var takeoffsSelection = "1"
+
+    /// The number of landings
+    var landings: Int {
+        landingsSelection.numberOfTakeoffsOrLandings
+    }
+
+    /// The number of takeoffs
+    var takeoffs: Int {
+        takeoffsSelection.numberOfTakeoffsOrLandings
+    }
+
     @State private var activityDate = Date()
 
     /// used to make the view dismiss itself
@@ -30,17 +44,17 @@ struct AddActivity: View {
             Section {
                 Text("Take-offs")
                     .font(.headline)
-                Picker("Take-offs", selection: $takeoffs) {
-                    ForEach(0 ..< pickerLabels.count) {
-                        Text("\(pickerLabels[$0])")
+                Picker("Take-offs", selection: $takeoffsSelection) {
+                    ForEach(pickerLabels, id: \.self) { label in
+                        Text(label)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 .accessibility(identifier: "takeOffPicker")
                 Text("Landings")
                     .font(.headline)
-                Picker("Take-offs", selection: $landings) {
-                    ForEach(0 ..< pickerLabels.count) {
-                        Text("\(pickerLabels[$0])")
+                Picker("Landings", selection: $landingsSelection) {
+                    ForEach(pickerLabels, id: \.self) { label in
+                        Text(label)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 .accessibility(identifier: "landingPicker")

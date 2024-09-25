@@ -15,8 +15,22 @@ struct EditActivity: View {
     /// The activity before editing
     let originalActivity: FlightActivity
 
-    @State private var landings = 1
-    @State private var takeoffs = 1
+    /// The selection in the landings picker
+    @State private var landingsSelection = "1"
+
+    /// The selection in the takeoffs picker
+    @State private var takeoffsSelection = "1"
+
+    /// The number of landings
+    var landings: Int {
+        landingsSelection.numberOfTakeoffsOrLandings
+    }
+
+    /// The number of takeoffs
+    var takeoffs: Int {
+        takeoffsSelection.numberOfTakeoffsOrLandings
+    }
+
     @State private var activityDate = Date()
 
     @State private var showingConfirmationAlert = false
@@ -37,17 +51,17 @@ struct EditActivity: View {
             Section {
                 Text("Take-offs")
                     .font(.headline)
-                Picker("Take-offs", selection: $takeoffs) {
-                    ForEach(0 ..< pickerLabels.count) {
-                        Text("\(pickerLabels[$0])")
+                Picker("Take-offs", selection: $takeoffsSelection) {
+                    ForEach(pickerLabels, id: \.self) { label in
+                        Text(label)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 .accessibility(identifier: "takeoffsSegmentedPicker")
                 Text("Landings")
                     .font(.headline)
-                Picker("Take-offs", selection: $landings) {
-                    ForEach(0 ..< pickerLabels.count) {
-                        Text("\(pickerLabels[$0])")
+                Picker("Landings", selection: $landingsSelection) {
+                    ForEach(pickerLabels, id: \.self) { label in
+                        Text(label)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 .accessibility(identifier: "landingsSegmentedPicker")
@@ -100,8 +114,8 @@ struct EditActivity: View {
         .navigationBarTitle("Edit Activity", displayMode: .inline)
         .onAppear {
             // load the initial state from the activity to be edited
-            takeoffs = originalActivity.takeoffs
-            landings = originalActivity.landings
+            takeoffsSelection = String.takeOffsLandingsSelections(originalActivity.takeoffs)
+            landingsSelection = String.takeOffsLandingsSelections(originalActivity.landings)
             activityDate = originalActivity.activityDate
         }
 
